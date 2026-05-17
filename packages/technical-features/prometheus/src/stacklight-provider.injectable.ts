@@ -52,6 +52,12 @@ export const getStacklightLikeQueryFor =
             return `sum(kube_node_status_capacity{resource="pods"${nodeFilterAdditive(opts, "node")}}) by (component)`;
           case "podAllocatableCapacity":
             return `sum(kube_node_status_allocatable{resource="pods"${nodeFilterAdditive(opts, "node")}}) by (component)`;
+          case "gpuCapacity":
+            return `sum(kube_node_status_capacity{resource="nvidia_com_gpu"${nodeFilterAdditive(opts, "node")}}) by (component)`;
+          case "gpuAllocatableCapacity":
+            return `sum(kube_node_status_allocatable{resource="nvidia_com_gpu"${nodeFilterAdditive(opts, "node")}}) by (component)`;
+          case "gpuRequests":
+            return `sum(kube_pod_container_resource_requests{resource="nvidia_com_gpu"${nodeFilterAdditive(opts, "node")}}) by (component)`;
           case "fsSize": {
             const nf = nodeFilterAdditive(opts, "node");
             return `sum(node_filesystem_size_bytes{mountpoint=~"${opts.mountpoints}"${nf}}) by (node)`;

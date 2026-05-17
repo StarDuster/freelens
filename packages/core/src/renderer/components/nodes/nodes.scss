@@ -82,6 +82,12 @@
       }
     }
 
+    &.gpu {
+      flex: 0.5;
+      align-self: center;
+      justify-content: center;
+    }
+
     &.pods {
       flex: 0.6;
       align-self: center;

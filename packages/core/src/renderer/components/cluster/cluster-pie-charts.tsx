@@ -66,6 +66,9 @@ const renderCharts = (defaultColor: string, lastPoints: Partial<Record<keyof Clu
     podUsage,
     podAllocatableCapacity,
     podCapacity,
+    gpuCapacity,
+    gpuAllocatableCapacity,
+    gpuRequests,
   } = lastPoints;
 
   if (
@@ -152,6 +155,23 @@ const renderCharts = (defaultColor: string, lastPoints: Partial<Record<keyof Clu
     labels: [`Usage: ${podUsage || 0}`, `Capacity: ${podAllocatableCapacity}`],
   };
 
+  const hasGpu = isNumber(gpuCapacity) && gpuCapacity > 0;
+  const gpuAllocatable = gpuAllocatableCapacity ?? gpuCapacity ?? 0;
+  const gpuData: PieChartData | undefined = hasGpu
+    ? {
+        datasets: [
+          {
+            data: [gpuRequests ?? 0, (gpuRequests ?? 0) > 0 ? gpuAllocatable - (gpuRequests ?? 0) : 1],
+            backgroundColor: ["#76b900", defaultColor],
+            id: "gpuRequests",
+            label: "Requests",
+            tooltipLabels: [(percent) => `Requests: ${percent}`, (percent) => `Available: ${percent}`],
+          },
+        ],
+        labels: [`Requests: ${gpuRequests ?? 0}`, `Capacity: ${gpuAllocatable}`],
+      }
+    : undefined;
+
   return (
     <div className="flex justify-center grow shrink-0 basis-0 gap-2">
       <div className={cssNames(styles.chart, "flex flex-col items-center grow shrink-0 basis-0")}>
@@ -173,6 +193,11 @@ const renderCharts = (defaultColor: string, lastPoints: Partial<Record<keyof Clu
       <div className={cssNames(styles.chart, "flex flex-col items-center grow shrink-0 basis-0")}>
         <PieChart data={podsData} title="Pods" legendColors={["#4caf50", defaultColor]} />
       </div>
+      {hasGpu && gpuData && (
+        <div className={cssNames(styles.chart, "flex flex-col items-center grow shrink-0 basis-0")}>
+          <PieChart data={gpuData} title="GPU" legendColors={["#76b900", defaultColor]} />
+        </div>
+      )}
     </div>
   );
 };

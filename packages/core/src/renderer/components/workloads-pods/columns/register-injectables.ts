@@ -9,6 +9,7 @@
 import { podsAgeColumnInjectable } from "./pods-age-column.injectable";
 import { podsContainersColumnInjectable } from "./pods-containers-column.injectable";
 import { podsUsedCpuColumnInjectable } from "./pods-cpu-usage-column.injectable";
+import { podsGpuColumnInjectable } from "./pods-gpu-column.injectable";
 import { podsipColumnInjectable } from "./pods-ip-column.injectable";
 import { podsLogsButtonColumnInjectable } from "./pods-logs-button-column.injectable";
 import { podsUsedMemoryColumnInjectable } from "./pods-memory-usage-column.injectable";
@@ -31,6 +32,11 @@ export function registerInjectables(di: DiContainerForInjection): void {
   }
   try {
     di.register(podsContainersColumnInjectable);
+  } catch (e) {
+    /* Ignore duplicate registration */
+  }
+  try {
+    di.register(podsGpuColumnInjectable);
   } catch (e) {
     /* Ignore duplicate registration */
   }
