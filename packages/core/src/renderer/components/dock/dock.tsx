@@ -57,8 +57,15 @@ class NonInjectedDock extends React.Component<DockProps & Dependencies> {
   }
 
   onKeyDown = (evt: KeyboardEvent) => {
-    const { close, selectedTab, closeTab } = this.props.dockStore;
+    const { close, toggle, selectedTab, closeTab } = this.props.dockStore;
     const { code, ctrlKey, metaKey, shiftKey } = evt;
+
+    if (ctrlKey && code === "Backquote") {
+      evt.preventDefault();
+      toggle();
+
+      return;
+    }
 
     // Determine if user working inside <Dock/> or using any other areas in app
     const dockIsFocused = this.element.current?.contains(document.activeElement);

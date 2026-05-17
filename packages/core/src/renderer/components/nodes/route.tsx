@@ -43,6 +43,7 @@ enum columnId {
   cpu = "cpu",
   memory = "memory",
   disk = "disk",
+  gpu = "gpu",
   pods = "pods",
   instanceType = "instanceType",
   nodeGroup = "nodeGroup",
@@ -66,6 +67,8 @@ interface UsageArgs {
   usageText?: string;
   tooltipLines?: string[];
 }
+
+const GPU_RESOURCE_KEY = "nvidia.com/gpu";
 
 interface Dependencies {
   requestAllNodeMetrics: RequestAllNodeMetrics;
@@ -431,6 +434,40 @@ class NonInjectedNodesRoute extends React.Component<Dependencies> {
     });
   }
 
+  private getNodeGpuAllocated(node: Node): number {
+    let allocated = 0;
+
+    for (const pod of this.getNonTerminatedPods(node)) {
+      for (const container of pod.getContainers()) {
+        const gpuRequest = container.resources?.requests?.[GPU_RESOURCE_KEY];
+
+        if (gpuRequest) {
+          allocated += parseInt(gpuRequest, 10) || 0;
+        }
+      }
+    }
+
+    return allocated;
+  }
+
+  renderGpuUsage(node: Node) {
+    const allocatable = node.status?.allocatable?.[GPU_RESOURCE_KEY];
+
+    if (!allocatable) {
+      return <span>-</span>;
+    }
+
+    const capacity = parseInt(allocatable, 10) || 0;
+
+    if (capacity === 0) {
+      return <span>-</span>;
+    }
+
+    const allocated = this.getNodeGpuAllocated(node);
+
+    return <span>{`${allocated}/${capacity}`}</span>;
+  }
+
   render() {
     const { nodeStore, eventStore } = this.props;
 
@@ -450,6 +487,7 @@ class NonInjectedNodesRoute extends React.Component<Dependencies> {
             [columnId.cpu]: (node) => this.getLastMetricValues(node, ["cpuUsage"]),
             [columnId.memory]: (node) => this.getLastMetricValues(node, ["memoryUsage"]),
             [columnId.disk]: (node) => this.getLastMetricValues(node, ["fsUsage"]),
+            [columnId.gpu]: (node) => this.getNodeGpuAllocated(node),
             [columnId.pods]: (node) => this.getNonTerminatedPods(node).length,
             [columnId.instanceType]: (node) => getInstanceType(node),
             [columnId.nodeGroup]: (node) => getNodeGroup(node),
@@ -479,6 +517,7 @@ class NonInjectedNodesRoute extends React.Component<Dependencies> {
             { title: "CPU", className: "cpu", sortBy: columnId.cpu, id: columnId.cpu },
             { title: "Memory", className: "memory", sortBy: columnId.memory, id: columnId.memory },
             { title: "Disk", className: "disk", sortBy: columnId.disk, id: columnId.disk },
+            { title: "GPU", className: "gpu", sortBy: columnId.gpu, id: columnId.gpu },
             { title: "Pods", className: "pods", sortBy: columnId.pods, id: columnId.pods },
             {
               title: "Instance Type",
@@ -520,6 +559,7 @@ class NonInjectedNodesRoute extends React.Component<Dependencies> {
               this.renderCpuUsage(node),
               this.renderMemoryUsage(node),
               this.renderDiskUsage(node),
+              this.renderGpuUsage(node),
               this.renderPodsUsage(node),
               <WithTooltip>{getInstanceType(node)}</WithTooltip>,
               <WithTooltip>{getNodeGroup(node)}</WithTooltip>,
