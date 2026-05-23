@@ -68,7 +68,7 @@ export const getOperatorLikeQueryFor =
           case "gpuAllocatableCapacity":
             return `sum(kube_node_status_allocatable{resource="nvidia_com_gpu"${nodeFilterAdditive(opts, "node")}})`;
           case "gpuRequests":
-            return `sum(kube_pod_container_resource_requests{resource="nvidia_com_gpu"${nodeFilterAdditive(opts, "node")}})`;
+            return `sum(kube_pod_container_resource_requests{resource="nvidia_com_gpu"${nodeFilterAdditive(opts, "node")}} * on(pod, namespace) group_left() (kube_pod_status_phase{phase="Running"} == 1))`;
           case "fsSize": {
             const join = nodeExporterJoin(opts);
             return `sum(node_filesystem_size_bytes{mountpoint=~"${opts.mountpoints}"}${join})`;
