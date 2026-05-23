@@ -161,7 +161,7 @@ const renderCharts = (defaultColor: string, lastPoints: Partial<Record<keyof Clu
     ? {
         datasets: [
           {
-            data: [gpuRequests ?? 0, (gpuRequests ?? 0) > 0 ? gpuAllocatable - (gpuRequests ?? 0) : 1],
+            data: [gpuRequests ?? 0, Math.max(0, gpuAllocatable - (gpuRequests ?? 0)) || 1],
             backgroundColor: ["#76b900", defaultColor],
             id: "gpuRequests",
             label: "Requests",
@@ -196,6 +196,7 @@ const renderCharts = (defaultColor: string, lastPoints: Partial<Record<keyof Clu
       {hasGpu && gpuData && (
         <div className={cssNames(styles.chart, "flex flex-col items-center grow shrink-0 basis-0")}>
           <PieChart data={gpuData} title="GPU" legendColors={["#76b900", defaultColor]} />
+          {(gpuRequests ?? 0) > gpuAllocatable && renderLimitWarning()}
         </div>
       )}
     </div>
