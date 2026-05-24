@@ -19,8 +19,9 @@ import styles from "./cluster-pie-charts.module.scss";
 import selectedMetricsTimeRangeInjectable from "./overview/selected-metrics-time-range.injectable";
 import selectedNodeRoleForMetricsInjectable from "./overview/selected-node-role-for-metrics.injectable";
 import { createMetricsTimeRangeKey } from "./overview/time-range-key";
+import podStoreInjectable from "../workloads-pods/store.injectable";
 
-import type { Node } from "@freelensapp/kube-object";
+import type { Node, Pod } from "@freelensapp/kube-object";
 
 import type { IComputedValue } from "mobx";
 
@@ -30,6 +31,7 @@ import type { LensTheme } from "../../themes/lens-theme";
 import type { PieChartData } from "../chart";
 import type { SelectedMetricsTimeRange } from "./overview/selected-metrics-time-range.injectable";
 import type { SelectedNodeRoleForMetrics } from "./overview/selected-node-role-for-metrics.injectable";
+import type { PodStore } from "../workloads-pods/store";
 
 function createLabels(rawLabelData: [string, number | undefined][]): string[] {
   return rawLabelData.map(([key, value]) => `${key}: ${value?.toFixed(2) || "N/A"}`);
@@ -37,11 +39,69 @@ function createLabels(rawLabelData: [string, number | undefined][]): string[] {
 
 const checkedBytesToUnits = (value: number | undefined) => (typeof value === "number" ? bytesToUnits(value) : "N/A");
 
+const GPU_RESOURCE_KEY = "nvidia.com/gpu";
+
+function computeGpuAllocatedByNode(pods: Pod[]): Map<string, number> {
+  const result = new Map<string, number>();
+
+  for (const pod of pods) {
+    const phase = pod.getStatusPhase();
+
+    if (phase !== "Running") {
+      continue;
+    }
+
+    const nodeName = pod.getNodeName();
+
+    if (!nodeName) {
+      continue;
+    }
+
+    for (const container of pod.getContainers()) {
+      const gpuRequest = container.resources?.requests?.[GPU_RESOURCE_KEY];
+
+      if (gpuRequest) {
+        result.set(nodeName, (result.get(nodeName) ?? 0) + (parseInt(gpuRequest, 10) || 0));
+      }
+    }
+  }
+
+  return result;
+}
+
+function computeFreeGpuNodesCount(nodes: Node[], pods: Pod[]): number {
+  const gpuAllocatedByNode = computeGpuAllocatedByNode(pods);
+  let freeCount = 0;
+
+  for (const node of nodes) {
+    const allocatable = node.status?.allocatable?.[GPU_RESOURCE_KEY];
+
+    if (!allocatable) {
+      continue;
+    }
+
+    const capacity = parseInt(allocatable, 10) || 0;
+
+    if (capacity === 0) {
+      continue;
+    }
+
+    const allocated = gpuAllocatedByNode.get(node.getName()) ?? 0;
+
+    if (allocated === 0) {
+      freeCount++;
+    }
+  }
+
+  return freeCount;
+}
+
 interface Dependencies {
   selectedNodeRoleForMetrics: SelectedNodeRoleForMetrics;
   clusterOverviewMetrics: IAsyncComputed<Partial<ClusterMetricData> | undefined>;
   activeTheme: IComputedValue<LensTheme>;
   selectedMetricsTimeRange: SelectedMetricsTimeRange;
+  podStore: PodStore;
 }
 
 const renderLimitWarning = () => (
@@ -51,7 +111,11 @@ const renderLimitWarning = () => (
   </div>
 );
 
-const renderCharts = (defaultColor: string, lastPoints: Partial<Record<keyof ClusterMetricData, number>>) => {
+const renderCharts = (
+  defaultColor: string,
+  lastPoints: Partial<Record<keyof ClusterMetricData, number>>,
+  freeGpuNodesCount: number,
+) => {
   const {
     memoryUsage,
     memoryRequests,
@@ -196,6 +260,7 @@ const renderCharts = (defaultColor: string, lastPoints: Partial<Record<keyof Clu
       {hasGpu && gpuData && (
         <div className={cssNames(styles.chart, "flex flex-col items-center grow shrink-0 basis-0")}>
           <PieChart data={gpuData} title="GPU" legendColors={["#76b900", defaultColor]} />
+          <div className={styles.gpuFreeNodes}>Free nodes: {freeGpuNodesCount}</div>
           {(gpuRequests ?? 0) > gpuAllocatable && renderLimitWarning()}
         </div>
       )}
@@ -203,7 +268,12 @@ const renderCharts = (defaultColor: string, lastPoints: Partial<Record<keyof Clu
   );
 };
 
-const renderContent = (defaultColor: string, nodes: Node[], metrics: Partial<ClusterMetricData> | undefined) => {
+const renderContent = (
+  defaultColor: string,
+  nodes: Node[],
+  metrics: Partial<ClusterMetricData> | undefined,
+  freeGpuNodesCount: number,
+) => {
   if (!nodes.length) {
     return (
       <div className={cssNames(styles.empty, "flex flex-col grow shrink-0 basis-0 items-center justify-center")}>
@@ -232,11 +302,17 @@ const renderContent = (defaultColor: string, nodes: Node[], metrics: Partial<Clu
     );
   }
 
-  return renderCharts(defaultColor, lastPoints);
+  return renderCharts(defaultColor, lastPoints, freeGpuNodesCount);
 };
 
 const NonInjectedClusterPieCharts = observer(
-  ({ selectedNodeRoleForMetrics, clusterOverviewMetrics, activeTheme, selectedMetricsTimeRange }: Dependencies) => {
+  ({
+    selectedNodeRoleForMetrics,
+    clusterOverviewMetrics,
+    activeTheme,
+    selectedMetricsTimeRange,
+    podStore,
+  }: Dependencies) => {
     const currentRangeKey = createMetricsTimeRangeKey(selectedMetricsTimeRange.value.get());
     const lastResolvedRangeKeyRef = useRef<string | undefined>(undefined);
     const isPending = clusterOverviewMetrics.pending.get();
@@ -245,16 +321,14 @@ const NonInjectedClusterPieCharts = observer(
       lastResolvedRangeKeyRef.current = currentRangeKey;
     }
 
+    const nodes = selectedNodeRoleForMetrics.nodes.get();
+    const freeGpuNodesCount = computeFreeGpuNodesCount(nodes, podStore.items);
     const visibleMetrics =
       isPending && currentRangeKey !== lastResolvedRangeKeyRef.current ? undefined : clusterOverviewMetrics.value.get();
 
     return (
       <div className="flex">
-        {renderContent(
-          activeTheme.get().colors.pieChartDefaultColor,
-          selectedNodeRoleForMetrics.nodes.get(),
-          visibleMetrics,
-        )}
+        {renderContent(activeTheme.get().colors.pieChartDefaultColor, nodes, visibleMetrics, freeGpuNodesCount)}
       </div>
     );
   },
@@ -266,5 +340,6 @@ export const ClusterPieCharts = withInjectables<Dependencies>(NonInjectedCluster
     clusterOverviewMetrics: di.inject(clusterOverviewMetricsInjectable),
     selectedNodeRoleForMetrics: di.inject(selectedNodeRoleForMetricsInjectable),
     selectedMetricsTimeRange: di.inject(selectedMetricsTimeRangeInjectable),
+    podStore: di.inject(podStoreInjectable),
   }),
 });

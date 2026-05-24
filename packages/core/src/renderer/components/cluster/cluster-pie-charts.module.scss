@@ -21,3 +21,9 @@
   display: flex;
   flex-grow: 1;
 }
+
+.gpuFreeNodes {
+  color: #4caf50;
+  font-size: var(--font-size-small);
+  margin-top: calc(var(--padding) * 0.5);
+}
