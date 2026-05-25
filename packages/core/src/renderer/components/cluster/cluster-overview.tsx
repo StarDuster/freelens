@@ -6,7 +6,7 @@
 
 import { clusterOverviewUIBlockInjectionToken } from "@freelensapp/metrics";
 import { Spinner } from "@freelensapp/spinner";
-import { byOrderNumber } from "@freelensapp/utilities";
+import { byOrderNumber, interval } from "@freelensapp/utilities";
 import { computedInjectManyInjectionToken } from "@ogre-tools/injectable-extension-for-mobx";
 import { withInjectables } from "@ogre-tools/injectable-react";
 import { observer } from "mobx-react";
@@ -43,13 +43,23 @@ interface Dependencies {
 class NonInjectedClusterOverview extends React.Component<Dependencies> {
   private readonly disposers: (() => void)[] = [];
 
+  private readonly gpuRefreshWatcher = interval(60, () => {
+    void this.refreshGpuSources();
+  });
+
   componentDidMount() {
     this.disposers.push(this.props.subscribeStores([this.props.podStore, this.props.eventStore, this.props.nodeStore]));
+    this.gpuRefreshWatcher.start(true);
   }
 
   componentWillUnmount() {
+    this.gpuRefreshWatcher.stop();
     this.disposers.forEach((dispose) => dispose());
   }
+
+  private refreshGpuSources = async () => {
+    await Promise.allSettled([this.props.nodeStore.loadAll({}), this.props.podStore.loadAll({})]);
+  };
 
   renderWithMetrics() {
     return (
