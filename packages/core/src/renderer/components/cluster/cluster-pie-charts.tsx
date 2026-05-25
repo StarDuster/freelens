@@ -11,35 +11,45 @@ import { withInjectables } from "@ogre-tools/injectable-react";
 import { observer } from "mobx-react";
 import { useRef } from "react";
 import { getMetricLastPoints } from "../../../common/k8s-api/endpoints/metrics.api";
+import requestAllNodeMetricsInjectable from "../../../common/k8s-api/endpoints/metrics.api/request-metrics-for-all-nodes.injectable";
 import activeThemeInjectable from "../../themes/active.injectable";
 import { PieChart } from "../chart";
+import {
+  canScheduleGpuWorkloadsOnNode,
+  GPU_RESOURCE_KEY,
+  getNodeGpuCapacity,
+  isNodeReady,
+} from "../nodes/gpu-capacity";
+import podStoreInjectable from "../workloads-pods/store.injectable";
 import clusterOverviewMetricsInjectable from "./cluster-metrics.injectable";
 import { ClusterNoMetrics } from "./cluster-no-metrics";
 import styles from "./cluster-pie-charts.module.scss";
 import selectedMetricsTimeRangeInjectable from "./overview/selected-metrics-time-range.injectable";
 import selectedNodeRoleForMetricsInjectable from "./overview/selected-node-role-for-metrics.injectable";
 import { createMetricsTimeRangeKey } from "./overview/time-range-key";
-import podStoreInjectable from "../workloads-pods/store.injectable";
 
 import type { Node, Pod } from "@freelensapp/kube-object";
 
 import type { IComputedValue } from "mobx";
 
+import type { MetricData } from "../../../common/k8s-api/endpoints/metrics.api";
 import type { ClusterMetricData } from "../../../common/k8s-api/endpoints/metrics.api/request-cluster-metrics-by-node-names.injectable";
+import type {
+  NodeMetricData,
+  RequestAllNodeMetrics,
+} from "../../../common/k8s-api/endpoints/metrics.api/request-metrics-for-all-nodes.injectable";
 import type { IAsyncComputed } from "../../../common/utils/async-computed";
 import type { LensTheme } from "../../themes/lens-theme";
 import type { PieChartData } from "../chart";
 import type { SelectedMetricsTimeRange } from "./overview/selected-metrics-time-range.injectable";
-import type { SelectedNodeRoleForMetrics } from "./overview/selected-node-role-for-metrics.injectable";
 import type { PodStore } from "../workloads-pods/store";
+import type { SelectedNodeRoleForMetrics } from "./overview/selected-node-role-for-metrics.injectable";
 
 function createLabels(rawLabelData: [string, number | undefined][]): string[] {
   return rawLabelData.map(([key, value]) => `${key}: ${value?.toFixed(2) || "N/A"}`);
 }
 
 const checkedBytesToUnits = (value: number | undefined) => (typeof value === "number" ? bytesToUnits(value) : "N/A");
-
-const GPU_RESOURCE_KEY = "nvidia.com/gpu";
 
 function computeGpuAllocatedByNode(pods: Pod[]): Map<string, number> {
   const result = new Map<string, number>();
@@ -74,15 +84,7 @@ function computeFreeGpuNodesCount(nodes: Node[], pods: Pod[]): number {
   let freeCount = 0;
 
   for (const node of nodes) {
-    const allocatable = node.status?.allocatable?.[GPU_RESOURCE_KEY];
-
-    if (!allocatable) {
-      continue;
-    }
-
-    const capacity = parseInt(allocatable, 10) || 0;
-
-    if (capacity === 0) {
+    if (!canScheduleGpuWorkloadsOnNode(node)) {
       continue;
     }
 
@@ -96,7 +98,82 @@ function computeFreeGpuNodesCount(nodes: Node[], pods: Pod[]): number {
   return freeCount;
 }
 
+function createDerivedMetric(metric: MetricData, value: number): MetricData {
+  return {
+    ...metric,
+    data: {
+      ...metric.data,
+      result: [
+        {
+          metric: { component: "derived" },
+          values: [[Math.floor(Date.now() / 1000), String(value)] as [number, string]],
+        },
+      ],
+    },
+  };
+}
+
+function getLastNodeMetricValue(
+  metrics: NodeMetricData | undefined,
+  nodeName: string,
+  metricName: keyof Pick<NodeMetricData, "gpuAllocatableCapacity" | "gpuCapacity" | "gpuRequests">,
+) {
+  try {
+    const result = metrics?.[metricName]?.data.result.find(
+      ({ metric: { node, instance, kubernetes_node } }) =>
+        nodeName === node || nodeName === instance || nodeName === kubernetes_node,
+    );
+    const lastValue = result?.values.slice(-1)[0]?.[1];
+
+    if (lastValue === undefined) {
+      return undefined;
+    }
+
+    const parsed = parseFloat(lastValue);
+
+    return Number.isFinite(parsed) ? parsed : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+function buildGpuSummary(nodes: Node[], pods: Pod[], nodeMetrics: NodeMetricData | undefined) {
+  const fallbackAllocatedByNode = computeGpuAllocatedByNode(pods);
+  let totalCapacity = 0;
+  let totalRequests = 0;
+  let freeNodes = 0;
+
+  for (const node of nodes) {
+    const nodeName = node.getName();
+    const capacity =
+      getLastNodeMetricValue(nodeMetrics, nodeName, "gpuAllocatableCapacity") ??
+      getLastNodeMetricValue(nodeMetrics, nodeName, "gpuCapacity") ??
+      getNodeGpuCapacity(node);
+
+    if (capacity === undefined || !isNodeReady(node)) {
+      continue;
+    }
+
+    const allocated =
+      getLastNodeMetricValue(nodeMetrics, nodeName, "gpuRequests") ?? fallbackAllocatedByNode.get(nodeName) ?? 0;
+
+    totalCapacity += capacity;
+    totalRequests += allocated;
+
+    if (!node.isUnschedulable() && allocated === 0) {
+      freeNodes++;
+    }
+  }
+
+  return {
+    freeNodes,
+    totalCapacity,
+    totalRequests,
+  };
+}
+
 interface Dependencies {
+  requestAllNodeMetrics: RequestAllNodeMetrics;
   selectedNodeRoleForMetrics: SelectedNodeRoleForMetrics;
   clusterOverviewMetrics: IAsyncComputed<Partial<ClusterMetricData> | undefined>;
   activeTheme: IComputedValue<LensTheme>;
@@ -307,6 +384,7 @@ const renderContent = (
 
 const NonInjectedClusterPieCharts = observer(
   ({
+    requestAllNodeMetrics,
     selectedNodeRoleForMetrics,
     clusterOverviewMetrics,
     activeTheme,
@@ -322,13 +400,53 @@ const NonInjectedClusterPieCharts = observer(
     }
 
     const nodes = selectedNodeRoleForMetrics.nodes.get();
-    const freeGpuNodesCount = computeFreeGpuNodesCount(nodes, podStore.items);
-    const visibleMetrics =
+    const [nodeMetrics, setNodeMetrics] = React.useState<NodeMetricData>();
+
+    React.useEffect(() => {
+      let disposed = false;
+
+      const refresh = async () => {
+        const metrics = await requestAllNodeMetrics().catch(() => undefined);
+
+        if (!disposed) {
+          setNodeMetrics(metrics);
+        }
+      };
+
+      void refresh();
+
+      const timer = window.setInterval(() => {
+        void refresh();
+      }, 60_000);
+
+      return () => {
+        disposed = true;
+        window.clearInterval(timer);
+      };
+    }, [requestAllNodeMetrics]);
+
+    const gpuSummary = buildGpuSummary(nodes, podStore.items, nodeMetrics);
+    const freeGpuNodesCount = gpuSummary.totalCapacity
+      ? gpuSummary.freeNodes
+      : computeFreeGpuNodesCount(nodes, podStore.items);
+    const clusterMetrics =
       isPending && currentRangeKey !== lastResolvedRangeKeyRef.current ? undefined : clusterOverviewMetrics.value.get();
+    const metrics =
+      clusterMetrics && gpuSummary.totalCapacity
+        ? {
+            ...clusterMetrics,
+            gpuAllocatableCapacity: createDerivedMetric(
+              clusterMetrics.gpuAllocatableCapacity,
+              gpuSummary.totalCapacity,
+            ),
+            gpuCapacity: createDerivedMetric(clusterMetrics.gpuCapacity, gpuSummary.totalCapacity),
+            gpuRequests: createDerivedMetric(clusterMetrics.gpuRequests, gpuSummary.totalRequests),
+          }
+        : clusterMetrics;
 
     return (
       <div className="flex">
-        {renderContent(activeTheme.get().colors.pieChartDefaultColor, nodes, visibleMetrics, freeGpuNodesCount)}
+        {renderContent(activeTheme.get().colors.pieChartDefaultColor, nodes, metrics, freeGpuNodesCount)}
       </div>
     );
   },
@@ -338,6 +456,7 @@ export const ClusterPieCharts = withInjectables<Dependencies>(NonInjectedCluster
   getProps: (di) => ({
     activeTheme: di.inject(activeThemeInjectable),
     clusterOverviewMetrics: di.inject(clusterOverviewMetricsInjectable),
+    requestAllNodeMetrics: di.inject(requestAllNodeMetricsInjectable),
     selectedNodeRoleForMetrics: di.inject(selectedNodeRoleForMetricsInjectable),
     selectedMetricsTimeRange: di.inject(selectedMetricsTimeRangeInjectable),
     podStore: di.inject(podStoreInjectable),

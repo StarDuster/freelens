@@ -6,8 +6,8 @@
 
 import "./nodes.scss";
 
-import { formatNodeTaint } from "@freelensapp/kube-object";
 import { Icon } from "@freelensapp/icon";
+import { formatNodeTaint } from "@freelensapp/kube-object";
 import { Tooltip, TooltipPosition, withTooltip } from "@freelensapp/tooltip";
 import { bytesToUnits, cpuUnitsToNumber, interval, unitsToBytes } from "@freelensapp/utilities";
 import { withInjectables } from "@ogre-tools/injectable-react";
@@ -26,6 +26,7 @@ import { LineProgress } from "../line-progress";
 import { WithTooltip } from "../with-tooltip";
 import loadPodsFromAllNamespacesInjectable from "../workloads-pods/load-pods-from-all-namespaces.injectable";
 import podStoreInjectable from "../workloads-pods/store.injectable";
+import { GPU_RESOURCE_KEY, getNodeGpuCapacity } from "./gpu-capacity";
 import nodeStoreInjectable from "./store.injectable";
 
 import type { Node, Pod } from "@freelensapp/kube-object";
@@ -68,8 +69,6 @@ interface UsageArgs {
   usageText?: string;
   tooltipLines?: string[];
 }
-
-const GPU_RESOURCE_KEY = "nvidia.com/gpu";
 
 const GpuCapacityWarningIcon = withTooltip(({ ...elemProps }: React.HTMLAttributes<HTMLDivElement>) => (
   <Icon material="warning_amber" className="warning" {...elemProps} />
@@ -292,6 +291,33 @@ class NonInjectedNodesRoute extends React.Component<Dependencies> {
     });
   }
 
+  private getLastMetricValue(node: Node, metricName: keyof NodeMetricData): number | undefined {
+    if (!this.metrics) {
+      return undefined;
+    }
+
+    const nodeName = node.getName();
+
+    try {
+      const metric = this.metrics[metricName];
+      const result = metric?.data.result.find(
+        ({ metric: { node, instance, kubernetes_node } }) =>
+          nodeName === node || nodeName === instance || nodeName === kubernetes_node,
+      );
+      const lastValue = result?.values.slice(-1)[0]?.[1];
+
+      if (lastValue === undefined) {
+        return undefined;
+      }
+
+      const parsed = parseFloat(lastValue);
+
+      return Number.isFinite(parsed) ? parsed : undefined;
+    } catch {
+      return undefined;
+    }
+  }
+
   private renderUsage({ node, title, usage, capacity, requests, usageText, tooltipLines = [] }: UsageArgs) {
     const hasUsage = usage !== undefined && Number.isFinite(usage);
     const hasRequests = requests !== undefined && requests > 0;
@@ -449,36 +475,51 @@ class NonInjectedNodesRoute extends React.Component<Dependencies> {
     });
   }
 
-  private getNodeGpuAllocated(node: Node): number {
-    let allocated = 0;
+  @computed
+  private get gpuAllocatedByNode(): Map<string, number> {
+    const result = new Map<string, number>();
+    const pods = this.props.podStore.items;
 
-    for (const pod of this.getNonTerminatedPods(node)) {
+    for (const pod of pods) {
+      const phase = pod.getStatusPhase();
+
+      if (phase !== "Running") {
+        continue;
+      }
+
+      const nodeName = pod.getNodeName();
+
+      if (!nodeName) {
+        continue;
+      }
+
       for (const container of pod.getContainers()) {
         const gpuRequest = container.resources?.requests?.[GPU_RESOURCE_KEY];
 
         if (gpuRequest) {
-          allocated += parseInt(gpuRequest, 10) || 0;
+          result.set(nodeName, (result.get(nodeName) ?? 0) + (parseInt(gpuRequest, 10) || 0));
         }
       }
     }
 
-    return allocated;
+    return result;
+  }
+
+  private getNodeGpuAllocated(node: Node): number {
+    return this.getLastMetricValue(node, "gpuRequests") ?? this.gpuAllocatedByNode.get(node.getName()) ?? 0;
   }
 
   renderGpuUsage(node: Node) {
-    const allocatable = node.status?.allocatable?.[GPU_RESOURCE_KEY];
-
-    if (!allocatable) {
-      return <span>-</span>;
-    }
-
-    const capacity = parseInt(allocatable, 10) || 0;
-
-    if (capacity === 0) {
-      return <span>-</span>;
-    }
-
     const allocated = this.getNodeGpuAllocated(node);
+    const capacity =
+      this.getLastMetricValue(node, "gpuAllocatableCapacity") ??
+      this.getLastMetricValue(node, "gpuCapacity") ??
+      getNodeGpuCapacity(node);
+
+    if (capacity === undefined) {
+      return <span>{allocated > 0 ? `${allocated}/-` : "-"}</span>;
+    }
+
     const isFullyFree = allocated === 0;
     const hasCapacityWarning = capacity !== 8;
 
