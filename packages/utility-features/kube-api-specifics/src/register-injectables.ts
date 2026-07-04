@@ -22,6 +22,7 @@ import { horizontalPodAutoscalerApiInjectable } from "./specifics/horizontal-pod
 import { ingressApiInjectable } from "./specifics/ingress.api.injectable";
 import { ingressClassApiInjectable } from "./specifics/ingress-class.api.injectable";
 import { jobApiInjectable } from "./specifics/job.api.injectable";
+import { leaderWorkerSetApiInjectable } from "./specifics/leader-worker-set.api.injectable";
 import { leaseApiInjectable } from "./specifics/lease.api.injectable";
 import { limitRangeApiInjectable } from "./specifics/limit-range.api.injectable";
 import { maybeKubeApiInjectable } from "./specifics/maybe-kube-api.injectable";
@@ -134,6 +135,11 @@ export function registerInjectables(di: DiContainerForInjection): void {
   }
   try {
     di.register(kubeEventApiInjectable);
+  } catch (e) {
+    /* Ignore duplicate registration */
+  }
+  try {
+    di.register(leaderWorkerSetApiInjectable);
   } catch (e) {
     /* Ignore duplicate registration */
   }

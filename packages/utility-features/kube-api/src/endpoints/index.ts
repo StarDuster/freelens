@@ -23,6 +23,7 @@ export * from "./horizontal-pod-autoscaler.api";
 export * from "./ingress.api";
 export * from "./ingress-class.api";
 export * from "./job.api";
+export * from "./leader-worker-set.api";
 export * from "./lease.api";
 export * from "./limit-range.api";
 export * from "./mutating-webhook-configuration.api";
