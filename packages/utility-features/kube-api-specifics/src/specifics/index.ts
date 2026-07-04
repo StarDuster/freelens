@@ -15,6 +15,7 @@ export * from "./horizontal-pod-autoscaler.api.injectable";
 export * from "./ingress.api.injectable";
 export * from "./ingress-class.api.injectable";
 export * from "./job.api.injectable";
+export * from "./leader-worker-set.api.injectable";
 export * from "./lease.api.injectable";
 export * from "./limit-range.api.injectable";
 export * from "./maybe-kube-api.injectable";

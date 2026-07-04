@@ -10,7 +10,10 @@ import cronJobMenuInjectable from "./cron-job-menu.injectable";
 import daemonsetMenuInjectable from "./daemonset-menu.injectable";
 import deploymentMenuInjectable from "./deployment-menu.injectable";
 import jobMenuInjectable from "./job-menu-copy.injectable";
+import leaderWorkerSetMenuInjectable from "./leaderworkerset-menu.injectable";
 import replicaSetMenuInjectable from "./replica-set-menu.injectable";
+import roleBasedGroupMenuInjectable from "./rolebasedgroup-menu.injectable";
+import roleInstanceMenuInjectable from "./roleinstance-menu.injectable";
 import serviceAccountMenuInjectable from "./service-account-menu.injectable";
 import statefulsetMenuInjectable from "./statefulset-menu.injectable";
 
@@ -38,7 +41,22 @@ export function registerInjectables(di: DiContainerForInjection): void {
     /* Ignore duplicate registration */
   }
   try {
+    di.register(leaderWorkerSetMenuInjectable);
+  } catch (e) {
+    /* Ignore duplicate registration */
+  }
+  try {
     di.register(replicaSetMenuInjectable);
+  } catch (e) {
+    /* Ignore duplicate registration */
+  }
+  try {
+    di.register(roleBasedGroupMenuInjectable);
+  } catch (e) {
+    /* Ignore duplicate registration */
+  }
+  try {
+    di.register(roleInstanceMenuInjectable);
   } catch (e) {
     /* Ignore duplicate registration */
   }
