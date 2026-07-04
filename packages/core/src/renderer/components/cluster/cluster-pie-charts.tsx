@@ -436,11 +436,11 @@ const NonInjectedClusterPieCharts = observer(
         ? {
             ...clusterMetrics,
             gpuAllocatableCapacity: createDerivedMetric(
-              clusterMetrics.gpuAllocatableCapacity,
+              clusterMetrics.gpuAllocatableCapacity as MetricData,
               gpuSummary.totalCapacity,
             ),
-            gpuCapacity: createDerivedMetric(clusterMetrics.gpuCapacity, gpuSummary.totalCapacity),
-            gpuRequests: createDerivedMetric(clusterMetrics.gpuRequests, gpuSummary.totalRequests),
+            gpuCapacity: createDerivedMetric(clusterMetrics.gpuCapacity as MetricData, gpuSummary.totalCapacity),
+            gpuRequests: createDerivedMetric(clusterMetrics.gpuRequests as MetricData, gpuSummary.totalRequests),
           }
         : clusterMetrics;
 
