@@ -58,12 +58,17 @@ class NonInjectedLeaderWorkerSetScaleDialog extends Component<LeaderWorkerSetSca
   }
 
   onOpen = async (lws: LeaderWorkerSet) => {
-    this.currentReplicas = await this.props.leaderWorkerSetApi.getReplicas({
-      namespace: lws.getNs(),
-      name: lws.getName(),
-    });
-    this.desiredReplicas = this.currentReplicas;
-    this.ready = true;
+    try {
+      this.currentReplicas = await this.props.leaderWorkerSetApi.getReplicas({
+        namespace: lws.getNs(),
+        name: lws.getName(),
+      });
+      this.desiredReplicas = this.currentReplicas;
+      this.ready = true;
+    } catch (err) {
+      this.props.showCheckedErrorNotification(err, "Failed to load LeaderWorkerSet replicas for scaling");
+      this.close();
+    }
   };
 
   onClose = () => {

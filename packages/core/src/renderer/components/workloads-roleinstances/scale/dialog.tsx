@@ -19,12 +19,12 @@ import { Slider } from "../../slider";
 import { Wizard, WizardStep } from "../../wizard";
 import roleInstanceScaleDialogStateInjectable from "./dialog-state.injectable";
 
-import type { ApiManager } from "../../../../common/k8s-api/api-manager/api-manager";
 import type { RoleInstance } from "@freelensapp/kube-object";
 import type { ShowCheckedErrorNotification } from "@freelensapp/notifications";
 
 import type { IObservableValue } from "mobx";
 
+import type { ApiManager } from "../../../../common/k8s-api/api-manager/api-manager";
 import type { DialogProps } from "../../dialog";
 
 interface ComponentScaleState {
@@ -70,16 +70,27 @@ class NonInjectedRoleInstanceScaleDialog extends Component<RoleInstanceScaleDial
   }
 
   onOpen = (roleInstance: RoleInstance) => {
-    this.componentStates = roleInstance.getComponents().map((component) => {
-      const readyReplicas = roleInstance.getComponentReadyReplicas(component.name);
-      return {
-        name: component.name,
-        currentSize: component.size ?? 0,
-        readyReplicas,
-        desiredSize: component.size ?? 0,
-      };
-    });
-    this.ready = true;
+    try {
+      const components = roleInstance.getComponents() ?? [];
+
+      if (components.length === 0) {
+        throw new Error("No components found in this RoleInstance specification.");
+      }
+
+      this.componentStates = components.map((component) => {
+        const readyReplicas = roleInstance.getComponentReadyReplicas(component.name);
+        return {
+          name: component.name,
+          currentSize: component.size ?? 0,
+          readyReplicas,
+          desiredSize: component.size ?? 0,
+        };
+      });
+      this.ready = true;
+    } catch (err) {
+      this.props.showCheckedErrorNotification(err, "Failed to load RoleInstance components for scaling");
+      this.close();
+    }
   };
 
   onClose = () => {

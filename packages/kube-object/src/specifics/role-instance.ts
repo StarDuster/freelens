@@ -50,7 +50,7 @@ export class RoleInstance extends KubeObject<NamespaceScopedMetadata, RoleInstan
   static apiBase = "/apis/workloads.x-k8s.io/v1alpha2/roleinstances";
 
   getComponents(): RoleInstanceComponent[] {
-    return this.spec.components ?? [];
+    return this.spec?.components ?? [];
   }
 
   getComponentStatus(name: string): RoleInstanceComponentStatus | undefined {
