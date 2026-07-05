@@ -9,7 +9,7 @@
 .Table {
   &.autoSize {
     .TableCell {
-      flex: 1 0;
+      flex: 1 1 0;
     }
   }
 
@@ -19,6 +19,22 @@
 
   &.scrollable.virtual {
     overflow: unset;
+
+    .TableHead {
+      scrollbar-gutter: stable;
+    }
+  }
+
+  .TableHead.grid-columns,
+  .TableRow.grid-columns {
+    display: grid !important;
+    width: 100%;
+    align-items: center;
+
+    > .TableCell {
+      flex: unset !important;
+      min-width: 0;
+    }
   }
 
   &.selectable {
