@@ -38,6 +38,7 @@ export * from "./role.api.injectable";
 export * from "./role-based-group.api.injectable";
 export * from "./role-binding.api.injectable";
 export * from "./role-instance.api.injectable";
+export * from "./role-instance-set.api.injectable";
 export * from "./runtime-class.api.injectable";
 export * from "./secret.api.injectable";
 export * from "./self-subject-rules-reviews.api.injectable";

@@ -14,6 +14,7 @@ import leaderWorkerSetMenuInjectable from "./leaderworkerset-menu.injectable";
 import replicaSetMenuInjectable from "./replica-set-menu.injectable";
 import roleBasedGroupMenuInjectable from "./rolebasedgroup-menu.injectable";
 import roleInstanceMenuInjectable from "./roleinstance-menu.injectable";
+import roleInstanceSetMenuInjectable from "./roleinstanceset-menu.injectable";
 import serviceAccountMenuInjectable from "./service-account-menu.injectable";
 import statefulsetMenuInjectable from "./statefulset-menu.injectable";
 
@@ -57,6 +58,11 @@ export function registerInjectables(di: DiContainerForInjection): void {
   }
   try {
     di.register(roleInstanceMenuInjectable);
+  } catch (e) {
+    /* Ignore duplicate registration */
+  }
+  try {
+    di.register(roleInstanceSetMenuInjectable);
   } catch (e) {
     /* Ignore duplicate registration */
   }

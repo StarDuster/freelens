@@ -82,6 +82,7 @@ import { registerInjectables as registerWorkloadsReplicasetsInjectables } from "
 import { registerInjectables as registerWorkloadsReplicationControllersInjectables } from "./workloads-replication-controllers/register-injectables";
 import { registerInjectables as registerWorkloadsRolebasedgroupsInjectables } from "./workloads-rolebasedgroups/register-injectables";
 import { registerInjectables as registerWorkloadsRoleinstancesInjectables } from "./workloads-roleinstances/register-injectables";
+import { registerInjectables as registerWorkloadsRoleinstancesetsInjectables } from "./workloads-roleinstancesets/register-injectables";
 import { registerInjectables as registerWorkloadsStatefulsetsInjectables } from "./workloads-statefulsets/register-injectables";
 
 import type { DiContainerForInjection } from "@ogre-tools/injectable";
@@ -464,6 +465,11 @@ export function registerInjectables(di: DiContainerForInjection): void {
   }
   try {
     registerWorkloadsRoleinstancesInjectables(di);
+  } catch (e) {
+    /* Ignore duplicate registration */
+  }
+  try {
+    registerWorkloadsRoleinstancesetsInjectables(di);
   } catch (e) {
     /* Ignore duplicate registration */
   }

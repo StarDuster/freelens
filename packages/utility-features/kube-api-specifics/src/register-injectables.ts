@@ -45,6 +45,7 @@ import { roleApiInjectable } from "./specifics/role.api.injectable";
 import roleBasedGroupApiInjectable from "./specifics/role-based-group.api.injectable";
 import { roleBindingApiInjectable } from "./specifics/role-binding.api.injectable";
 import roleInstanceApiInjectable from "./specifics/role-instance.api.injectable";
+import roleInstanceSetApiInjectable from "./specifics/role-instance-set.api.injectable";
 import { runtimeClassApiInjectable } from "./specifics/runtime-class.api.injectable";
 import { secretApiInjectable } from "./specifics/secret.api.injectable";
 import { selfSubjectRulesReviewApiInjectable } from "./specifics/self-subject-rules-reviews.api.injectable";
@@ -252,6 +253,11 @@ export function registerInjectables(di: DiContainerForInjection): void {
   }
   try {
     di.register(roleInstanceApiInjectable);
+  } catch (e) {
+    /* Ignore duplicate registration */
+  }
+  try {
+    di.register(roleInstanceSetApiInjectable);
   } catch (e) {
     /* Ignore duplicate registration */
   }
