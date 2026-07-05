@@ -6,6 +6,7 @@
 
 import { sidebarItemInjectionToken } from "@freelensapp/cluster-sidebar";
 import { getInjectable } from "@ogre-tools/injectable";
+import { computed } from "mobx";
 import navigateToReplicationControllersInjectable from "../../../common/front-end-routing/routes/cluster/workloads/replication-controllers/navigate-to.injectable";
 import replicationControllersRouteInjectable from "../../../common/front-end-routing/routes/cluster/workloads/replication-controllers/route.injectable";
 import routeIsActiveInjectable from "../../routes/route-is-active.injectable";
@@ -22,7 +23,7 @@ const replicationControllerSidebarItemInjectable = getInjectable({
       title: "Replication Controllers",
       onClick: di.inject(navigateToReplicationControllersInjectable),
       isActive: di.inject(routeIsActiveInjectable, route),
-      isVisible: route.isEnabled,
+      isVisible: computed(() => false),
       orderNumber: 61,
     };
   },
