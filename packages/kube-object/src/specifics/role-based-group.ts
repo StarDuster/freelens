@@ -52,7 +52,7 @@ export class RoleBasedGroup extends KubeObject<NamespaceScopedMetadata, RoleBase
   static apiBase = "/apis/workloads.x-k8s.io/v1alpha2/rolebasedgroups";
 
   getRoles(): RoleBasedGroupRole[] {
-    return this.spec.roles ?? [];
+    return this.spec?.roles ?? [];
   }
 
   getRoleStatus(name: string): RoleBasedGroupRoleStatus | undefined {

@@ -19,12 +19,12 @@ import { Slider } from "../../slider";
 import { Wizard, WizardStep } from "../../wizard";
 import roleBasedGroupScaleDialogStateInjectable from "./dialog-state.injectable";
 
-import type { ApiManager } from "../../../../common/k8s-api/api-manager/api-manager";
 import type { RoleBasedGroup } from "@freelensapp/kube-object";
 import type { ShowCheckedErrorNotification } from "@freelensapp/notifications";
 
 import type { IObservableValue } from "mobx";
 
+import type { ApiManager } from "../../../../common/k8s-api/api-manager/api-manager";
 import type { DialogProps } from "../../dialog";
 
 interface RoleScaleState {
@@ -70,16 +70,27 @@ class NonInjectedRoleBasedGroupScaleDialog extends Component<RoleBasedGroupScale
   }
 
   onOpen = (rbg: RoleBasedGroup) => {
-    this.roleStates = rbg.getRoles().map((role) => {
-      const readyReplicas = rbg.getRoleReadyReplicas(role.name);
-      return {
-        name: role.name,
-        currentReplicas: role.replicas ?? 0,
-        readyReplicas,
-        desiredReplicas: role.replicas ?? 0,
-      };
-    });
-    this.ready = true;
+    try {
+      const roles = rbg.getRoles() ?? [];
+
+      if (roles.length === 0) {
+        throw new Error("No roles found in this RoleBasedGroup specification.");
+      }
+
+      this.roleStates = roles.map((role) => {
+        const readyReplicas = rbg.getRoleReadyReplicas(role.name);
+        return {
+          name: role.name,
+          currentReplicas: role.replicas ?? 0,
+          readyReplicas,
+          desiredReplicas: role.replicas ?? 0,
+        };
+      });
+      this.ready = true;
+    } catch (err) {
+      this.props.showCheckedErrorNotification(err, "Failed to load RoleBasedGroup roles for scaling");
+      this.close();
+    }
   };
 
   onClose = () => {
