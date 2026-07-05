@@ -7,10 +7,16 @@
  */
 
 import { registerInjectables as registerScaleInjectables } from "./scale/register-injectables";
+import leaderWorkerSetSidebarItemInjectable from "./sidebar-item.injectable";
 
 import type { DiContainerForInjection } from "@ogre-tools/injectable";
 
 export function registerInjectables(di: DiContainerForInjection): void {
+  try {
+    di.register(leaderWorkerSetSidebarItemInjectable);
+  } catch (e) {
+    /* Ignore duplicate registration */
+  }
   try {
     registerScaleInjectables(di);
   } catch (e) {
