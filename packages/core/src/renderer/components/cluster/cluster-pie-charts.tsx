@@ -41,8 +41,8 @@ import type {
 import type { IAsyncComputed } from "../../../common/utils/async-computed";
 import type { LensTheme } from "../../themes/lens-theme";
 import type { PieChartData } from "../chart";
-import type { SelectedMetricsTimeRange } from "./overview/selected-metrics-time-range.injectable";
 import type { PodStore } from "../workloads-pods/store";
+import type { SelectedMetricsTimeRange } from "./overview/selected-metrics-time-range.injectable";
 import type { SelectedNodeRoleForMetrics } from "./overview/selected-node-role-for-metrics.injectable";
 
 function createLabels(rawLabelData: [string, number | undefined][]): string[] {
@@ -98,11 +98,11 @@ function computeFreeGpuNodesCount(nodes: Node[], pods: Pod[]): number {
   return freeCount;
 }
 
-function createDerivedMetric(metric: MetricData, value: number): MetricData {
+function createDerivedMetric(metric: MetricData | undefined, value: number): MetricData {
   return {
-    ...metric,
+    status: metric?.status ?? "",
     data: {
-      ...metric.data,
+      resultType: metric?.data?.resultType ?? "matrix",
       result: [
         {
           metric: { component: "derived" },
@@ -436,11 +436,11 @@ const NonInjectedClusterPieCharts = observer(
         ? {
             ...clusterMetrics,
             gpuAllocatableCapacity: createDerivedMetric(
-              clusterMetrics.gpuAllocatableCapacity as MetricData,
+              clusterMetrics.gpuAllocatableCapacity,
               gpuSummary.totalCapacity,
             ),
-            gpuCapacity: createDerivedMetric(clusterMetrics.gpuCapacity as MetricData, gpuSummary.totalCapacity),
-            gpuRequests: createDerivedMetric(clusterMetrics.gpuRequests as MetricData, gpuSummary.totalRequests),
+            gpuCapacity: createDerivedMetric(clusterMetrics.gpuCapacity, gpuSummary.totalCapacity),
+            gpuRequests: createDerivedMetric(clusterMetrics.gpuRequests, gpuSummary.totalRequests),
           }
         : clusterMetrics;
 
