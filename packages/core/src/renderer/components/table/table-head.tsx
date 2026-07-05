@@ -13,6 +13,7 @@ export type TableHeadElem = React.ReactElement<TableHeadProps>;
 
 export interface TableHeadProps extends React.DOMAttributes<HTMLDivElement> {
   className?: string;
+  style?: React.CSSProperties;
   showTopLine?: boolean; // show border line at the top
   sticky?: boolean; // keep header on top when scrolling
   nowrap?: boolean; // white-space: nowrap, align inner <TableCell> in one line
@@ -25,7 +26,7 @@ export class TableHead extends React.Component<TableHeadProps> {
   };
 
   render() {
-    const { className, sticky, nowrap, showTopLine, flat, children, ...headProps } = this.props;
+    const { className, style, sticky, nowrap, showTopLine, flat, children, ...headProps } = this.props;
     const classNames = cssNames("TableHead", className, {
       sticky,
       nowrap,
@@ -34,7 +35,7 @@ export class TableHead extends React.Component<TableHeadProps> {
     });
 
     return (
-      <div className={classNames} {...headProps}>
+      <div className={classNames} style={style} {...headProps}>
         {children}
       </div>
     );

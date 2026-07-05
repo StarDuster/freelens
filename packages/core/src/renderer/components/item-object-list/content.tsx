@@ -105,9 +105,11 @@ export class NonInjectedItemListLayoutContent<
   private resizeState: ResizeState | null = null;
   private tableRef = React.createRef<HTMLDivElement>();
   private resizeGuideRef = React.createRef<HTMLDivElement>();
+  private columnGridObserver: ResizeObserver | null = null;
 
   @observable private accessor columnFlexGrow = new Map<string, number>();
   @observable private accessor resizeGuideX: number | null = null;
+  @observable private accessor columnGridTemplate: string | undefined;
 
   // mobx-react 9 forbids reading this.props inside a derivation. getRow/getTableRow
   // (and the showColumn they call) are invoked from foreign derivations — the inner
@@ -124,12 +126,53 @@ export class NonInjectedItemListLayoutContent<
     this.loadSavedColumnWidths();
   }
 
+  componentDidMount() {
+    this.observeColumnGrid();
+    this.syncColumnGridTemplate();
+  }
+
   componentDidUpdate() {
     this.observableProps = this.props;
+    this.syncColumnGridTemplate();
   }
 
   componentWillUnmount() {
     this.cleanupResizeListeners();
+    this.columnGridObserver?.disconnect();
+    this.columnGridObserver = null;
+  }
+
+  private observeColumnGrid() {
+    const tableHead = this.tableRef.current?.querySelector(".TableHead");
+
+    if (!tableHead) {
+      return;
+    }
+
+    this.columnGridObserver?.disconnect();
+    this.columnGridObserver = new ResizeObserver(() => this.syncColumnGridTemplate());
+    this.columnGridObserver.observe(tableHead);
+  }
+
+  @action
+  private syncColumnGridTemplate() {
+    const headerCells = this.tableRef.current?.querySelectorAll(".TableHead .TableCell");
+
+    if (!headerCells?.length) {
+      return;
+    }
+
+    const template = Array.from(headerCells)
+      .map((cell) => {
+        const width = Math.round(cell.getBoundingClientRect().width);
+
+        return width > 0 ? `${width}px` : "0px";
+      })
+      .join(" ");
+
+    if (template !== this.columnGridTemplate) {
+      this.columnGridTemplate = template;
+    }
   }
 
   @action
@@ -225,6 +268,7 @@ export class NonInjectedItemListLayoutContent<
           const actualColumnRight = headerRect.right - tableRect.left;
 
           this.resizeGuideX = actualColumnRight;
+          this.syncColumnGridTemplate();
         }
       }
     });
@@ -262,6 +306,7 @@ export class NonInjectedItemListLayoutContent<
     this.cleanupResizeListeners();
     this.resizeState = null;
     this.resizeGuideX = null;
+    this.syncColumnGridTemplate();
   }
 
   private cleanupResizeListeners() {
@@ -301,6 +346,20 @@ export class NonInjectedItemListLayoutContent<
     return flexGrow ? parseFloat(flexGrow) : 1;
   }
 
+  private getColumnFlexStyle(cellProps: TableCellProps): React.CSSProperties | undefined {
+    const { id, style } = cellProps;
+
+    if (!id || !this.columnFlexGrow.has(id)) {
+      return style;
+    }
+
+    return {
+      ...style,
+      flex: `${this.columnFlexGrow.get(id)} 1 0`,
+      minWidth: 0,
+    };
+  }
+
   // Plain getter (not @computed): reads this.props, which mobx-react 9 forbids
   // inside a derivation. Read from render, reactivity is preserved by the
   // observer render reaction.
@@ -332,6 +391,9 @@ export class NonInjectedItemListLayoutContent<
       isTableColumnHidden,
     } = this.observableProps;
     const { isSelected } = store;
+    const rowProps: Partial<TableRowProps<Item>> = customizeTableRowProps(item);
+    const gridRowStyle = this.columnGridTemplate ? { gridTemplateColumns: this.columnGridTemplate } : undefined;
+    const { className: rowClassName, style: rowStyle, ...restRowProps } = rowProps;
 
     // Inline column-visibility check from the captured snapshot; this.showColumn
     // reads this.props, which is forbidden here (foreign derivation).
@@ -348,7 +410,9 @@ export class NonInjectedItemListLayoutContent<
         sortItem={item}
         selected={detailsItem && detailsItem.getId() === item.getId()}
         onClick={hasDetailsView ? prevDefault(() => onDetails?.(item)) : undefined}
-        {...customizeTableRowProps(item)}
+        {...restRowProps}
+        className={cssNames(rowClassName, { "grid-columns": !!this.columnGridTemplate })}
+        style={{ ...rowStyle, ...gridRowStyle }}
       >
         {isSelectable && (
           <TableCell checkbox isChecked={isSelected(item)} onClick={prevDefault(() => store.toggleSelection(item))} />
@@ -366,13 +430,10 @@ export class NonInjectedItemListLayoutContent<
               <TableCell
                 key={index}
                 {...cellProps}
-                style={{
-                  ...cellProps.style,
-                  flex:
-                    headCell?.id && this.columnFlexGrow.has(headCell.id)
-                      ? `${this.columnFlexGrow.get(headCell.id)} 0`
-                      : cellProps.style?.flex,
-                }}
+                style={this.getColumnFlexStyle({
+                  ...cellProps,
+                  id: headCell?.id ?? cellProps.id,
+                })}
               />
             );
           }
@@ -390,7 +451,7 @@ export class NonInjectedItemListLayoutContent<
 
   getRow(uid: string) {
     return (
-      <div key={uid}>
+      <div key={uid} className="virtual-table-row">
         <Observer>
           {() => {
             // observableProps, not this.props: this <Observer> is its own derivation.
@@ -496,8 +557,15 @@ export class NonInjectedItemListLayoutContent<
 
     const enabledItems = this.props.getItems().filter((item) => !customizeTableRowProps?.(item).disabled);
 
+    const gridHeadStyle = this.columnGridTemplate ? { gridTemplateColumns: this.columnGridTemplate } : undefined;
+
     return (
-      <TableHead showTopLine nowrap>
+      <TableHead
+        showTopLine
+        nowrap
+        className={cssNames({ "grid-columns": !!this.columnGridTemplate })}
+        style={gridHeadStyle}
+      >
         {isSelectable && (
           <Observer>
             {() => (
@@ -509,25 +577,21 @@ export class NonInjectedItemListLayoutContent<
             )}
           </Observer>
         )}
-        {renderTableHeader.filter(isDefined).map(
-          (cellProps, index) =>
-            this.showColumn(cellProps) && (
-              <TableCell
-                key={cellProps.id ?? index}
-                onResizeStart={cellProps.id ? (event) => this.handleResizeStart(cellProps.id!, event) : undefined}
-                onResizeReset={cellProps.id ? () => this.handleResizeReset(cellProps.id!) : undefined}
-                {...cellProps}
-                resizable={cellProps.id !== "logs" && !!cellProps.id}
-                style={{
-                  ...cellProps.style,
-                  flex:
-                    cellProps.id && this.columnFlexGrow.has(cellProps.id)
-                      ? `${this.columnFlexGrow.get(cellProps.id)} 0`
-                      : cellProps.style?.flex,
-                }}
-              />
-            ),
-        )}
+        {renderTableHeader
+          .filter(isDefined)
+          .map(
+            (cellProps, index) =>
+              this.showColumn(cellProps) && (
+                <TableCell
+                  key={cellProps.id ?? index}
+                  onResizeStart={cellProps.id ? (event) => this.handleResizeStart(cellProps.id!, event) : undefined}
+                  onResizeReset={cellProps.id ? () => this.handleResizeReset(cellProps.id!) : undefined}
+                  {...cellProps}
+                  resizable={cellProps.id !== "logs" && !!cellProps.id}
+                  style={this.getColumnFlexStyle(cellProps)}
+                />
+              ),
+          )}
         <TableCell className="menu">
           {isConfigurable && tableId ? this.renderColumnVisibilityMenu(tableId) : undefined}
         </TableCell>

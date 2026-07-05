@@ -5,8 +5,14 @@
  */
 
 .VirtualList {
-  .list {
-    /* Render scrollbar in content area, preventing it from occupying extra space */
-    overflow-y: overlay !important;
+  width: 100%;
+
+  > div > .list {
+    overflow-y: auto !important;
+    scrollbar-gutter: stable;
+  }
+
+  .virtual-table-row {
+    width: 100%;
   }
 }

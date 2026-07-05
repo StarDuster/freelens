@@ -10,23 +10,23 @@
 .Pods {
   .TableCell {
     &.name {
-      flex-grow: 2.5;
+      flex: 2.5 1 0;
     }
 
-    &.age {
-      flex-grow: 0.5;
+    &.namespace {
+      flex: 1 1 0;
     }
 
     &.ip {
-      flex-grow: 1;
+      flex: 1 1 0;
     }
 
     &.qos {
-      flex-grow: 0.8;
+      flex: 0.8 1 0;
     }
 
     &.cpu {
-      flex-grow: 0.4;
+      flex: 0.4 1 0;
       justify-content: right;
 
       &.sorting {
@@ -35,7 +35,7 @@
     }
 
     &.memory {
-      flex-grow: 0.6;
+      flex: 0.6 1 0;
       justify-content: right;
 
       &.sorting {
@@ -43,17 +43,37 @@
       }
     }
 
+    &.gpu {
+      flex: 0.3 1 0;
+    }
+
+    &.containers {
+      flex: 0.7 1 0;
+    }
+
     &.restarts {
-      flex-grow: 0.3;
+      flex: 0.3 1 0;
+    }
+
+    &.owners {
+      flex: 0.8 1 0;
+    }
+
+    &.node {
+      flex: 0.8 1 0;
     }
 
     &.warning {
       @include table.table-cell-warning;
     }
 
+    &.age {
+      flex: 0.5 1 0;
+    }
+
     &.status {
       @include workloads-mixins.pod-status-colors;
-      flex-grow: 0.7;
+      flex: 0.7 1 0;
     }
 
     &.logs {
