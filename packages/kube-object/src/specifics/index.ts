@@ -42,6 +42,7 @@ export * from "./role";
 export * from "./role-based-group";
 export * from "./role-binding";
 export * from "./role-instance";
+export * from "./role-instance-set";
 export * from "./runtime-class";
 export * from "./secret";
 export * from "./self-subject-rules-reviews";

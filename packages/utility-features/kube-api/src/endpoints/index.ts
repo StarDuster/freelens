@@ -45,6 +45,7 @@ export * from "./role.api";
 export * from "./role-based-group.api";
 export * from "./role-binding.api";
 export * from "./role-instance.api";
+export * from "./role-instance-set.api";
 export * from "./runtime-class.api";
 export * from "./secret.api";
 export * from "./self-subject-rules-reviews.api";
