@@ -12,8 +12,8 @@ import openLeaderWorkerSetScaleDialogInjectable from "./scale/open.injectable";
 
 import type { LeaderWorkerSet } from "@freelensapp/kube-object";
 
-import type { OpenLeaderWorkerSetScaleDialog } from "./scale/open.injectable";
 import type { KubeObjectMenuProps } from "../kube-object-menu";
+import type { OpenLeaderWorkerSetScaleDialog } from "./scale/open.injectable";
 
 export interface LeaderWorkerSetMenuProps extends KubeObjectMenuProps<LeaderWorkerSet> {}
 
