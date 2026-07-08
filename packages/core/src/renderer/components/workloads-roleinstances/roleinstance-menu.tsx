@@ -12,8 +12,8 @@ import openRoleInstanceScaleDialogInjectable from "./scale/open.injectable";
 
 import type { RoleInstance } from "@freelensapp/kube-object";
 
-import type { OpenRoleInstanceScaleDialog } from "./scale/open.injectable";
 import type { KubeObjectMenuProps } from "../kube-object-menu";
+import type { OpenRoleInstanceScaleDialog } from "./scale/open.injectable";
 
 export interface RoleInstanceMenuProps extends KubeObjectMenuProps<RoleInstance> {}
 

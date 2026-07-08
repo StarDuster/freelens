@@ -12,8 +12,8 @@ import openRoleBasedGroupScaleDialogInjectable from "./scale/open.injectable";
 
 import type { RoleBasedGroup } from "@freelensapp/kube-object";
 
-import type { OpenRoleBasedGroupScaleDialog } from "./scale/open.injectable";
 import type { KubeObjectMenuProps } from "../kube-object-menu";
+import type { OpenRoleBasedGroupScaleDialog } from "./scale/open.injectable";
 
 export interface RoleBasedGroupMenuProps extends KubeObjectMenuProps<RoleBasedGroup> {}
 
