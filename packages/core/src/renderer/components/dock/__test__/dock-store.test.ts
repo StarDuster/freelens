@@ -73,6 +73,13 @@ describe("DockStore", () => {
     expect(dockStore.isOpen).toBe(false);
   });
 
+  it("closes when empty dock state is restored as open", () => {
+    dockStore.tabs = [];
+    dockStore.open();
+
+    expect(dockStore.isOpen).toBe(false);
+  });
+
   it("doesn't change selected tab if other tab closed", () => {
     dockStore.tabs = initialTabs;
     dockStore.closeTab("install");

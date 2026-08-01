@@ -121,12 +121,21 @@ export class DockStore implements DockStorageState {
       }
     }
 
-    // Recover persisted state left by older versions where the final tab could
-    // be removed while the dock stayed open.
-    if (!this.hasTabs()) {
-      this.selectedTabId = undefined;
-      this.close();
-    }
+    // Storage may restore after this store is constructed. Keep the invariant
+    // live so an asynchronously restored `tabs=[] + isOpen=true` state is
+    // normalized as well as state changed through closeTab().
+    reaction(
+      () => [this.hasTabs(), this.isOpen] as const,
+      ([hasTabs, isOpen]) => {
+        if (!hasTabs && isOpen) {
+          runInAction(() => {
+            this.selectedTabId = undefined;
+            this.close();
+          });
+        }
+      },
+      { fireImmediately: true, equals: comparer.structural },
+    );
   }
 
   readonly minHeight = 100;
