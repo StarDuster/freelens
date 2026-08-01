@@ -63,11 +63,14 @@ describe("DockStore", () => {
     expect(dockStore.selectedTabId).toBe("create");
   });
 
-  it("closes last tab and selects none", () => {
+  it("closes dock after closing the final tab", () => {
     dockStore.tabs = [{ id: "create", kind: TabKind.CREATE_RESOURCE, title: "Create resource", pinned: false }];
+    dockStore.open();
     dockStore.closeTab("create");
 
+    expect(dockStore.tabs).toEqual([]);
     expect(dockStore.selectedTabId).toBeUndefined();
+    expect(dockStore.isOpen).toBe(false);
   });
 
   it("doesn't change selected tab if other tab closed", () => {
