@@ -23,6 +23,12 @@ export enum TabKind {
 }
 
 /**
+ * Tab kinds this build can render. Persisted state may contain tabs written
+ * by other builds with additional kinds; those cannot be rendered here.
+ */
+const knownTabKinds = new Set<string>(Object.values(TabKind));
+
+/**
  * This is the storage model for dock tabs.
  *
  * All fields are required.
@@ -121,18 +127,32 @@ export class DockStore implements DockStorageState {
       }
     }
 
-    // Storage may restore after this store is constructed. Keep the invariant
-    // live so an asynchronously restored `tabs=[] + isOpen=true` state is
-    // normalized as well as state changed through closeTab().
+    // Storage may restore after this store is constructed. Keep the
+    // invariants live so asynchronously restored state is normalized as well
+    // as state changed through closeTab():
+    // - tabs of unknown kinds (persisted by other builds) are dropped,
+    // - an empty dock left open (`tabs=[] + isOpen=true`) is closed.
     reaction(
-      () => [this.hasTabs(), this.isOpen] as const,
-      ([hasTabs, isOpen]) => {
-        if (!hasTabs && isOpen) {
-          runInAction(() => {
-            this.selectedTabId = undefined;
-            this.close();
-          });
-        }
+      () => [this.tabs.map((tab) => tab.kind), this.isOpen] as const,
+      () => {
+        // Write through the storage layer, not the computed setters: this
+        // reaction can fire while one of those setters is still running, and
+        // re-entering a computed setter is forbidden by MobX.
+        runInAction(() => {
+          const { tabs, selectedTabId, isOpen } = this.dependencies.storage.get();
+          const validTabs = tabs.filter((tab) => knownTabKinds.has(tab.kind));
+
+          if (validTabs.length !== tabs.length) {
+            this.dependencies.storage.merge({
+              tabs: validTabs,
+              selectedTabId: validTabs.some((tab) => tab.id === selectedTabId) ? selectedTabId : validTabs[0]?.id,
+            });
+          }
+
+          if (validTabs.length === 0 && isOpen) {
+            this.dependencies.storage.merge({ selectedTabId: undefined, isOpen: false });
+          }
+        });
       },
       { fireImmediately: true, equals: comparer.structural },
     );
