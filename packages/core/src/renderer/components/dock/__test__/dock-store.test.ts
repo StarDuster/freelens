@@ -80,6 +80,30 @@ describe("DockStore", () => {
     expect(dockStore.isOpen).toBe(false);
   });
 
+  it("drops restored tabs of unknown kinds and closes the emptied dock", () => {
+    dockStore.tabs = [
+      { id: "foreign", kind: "ai-agent" as TabKind, title: "AI Agent", pinned: false },
+      { id: "foreign-2", kind: "ai-agent" as TabKind, title: "AI Agent", pinned: false },
+    ];
+    dockStore.open();
+
+    expect(dockStore.tabs).toEqual([]);
+    expect(dockStore.selectedTabId).toBeUndefined();
+    expect(dockStore.isOpen).toBe(false);
+  });
+
+  it("drops restored tabs of unknown kinds but keeps known tabs", () => {
+    dockStore.tabs = [
+      { id: "foreign", kind: "ai-agent" as TabKind, title: "AI Agent", pinned: false },
+      { id: "terminal", kind: TabKind.TERMINAL, title: "Terminal", pinned: false },
+    ];
+    dockStore.open();
+
+    expect(dockStore.tabs.map((tab) => tab.id)).toEqual(["terminal"]);
+    expect(dockStore.selectedTabId).toBe("terminal");
+    expect(dockStore.isOpen).toBe(true);
+  });
+
   it("doesn't change selected tab if other tab closed", () => {
     dockStore.tabs = initialTabs;
     dockStore.closeTab("install");
