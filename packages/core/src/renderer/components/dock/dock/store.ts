@@ -120,6 +120,13 @@ export class DockStore implements DockStorageState {
         this.closeTab(tab.id);
       }
     }
+
+    // Recover persisted state left by older versions where the final tab could
+    // be removed while the dock stayed open.
+    if (!this.hasTabs()) {
+      this.selectedTabId = undefined;
+      this.close();
+    }
   }
 
   readonly minHeight = 100;
@@ -327,18 +334,26 @@ export class DockStore implements DockStorageState {
       return;
     }
 
+    // Capture selection before mutating tabs. selectedTabId can be a computed
+    // fallback to tabs[0], so reading it after removal loses that information.
+    const wasSelected = this.selectedTabId === tab.id;
+
     this.tabs = this.tabs.filter((tab) => tab.id !== tabId);
     this.dependencies.tabDataClearers[tab.kind](tab.id);
 
-    if (this.selectedTabId === tab.id) {
-      if (this.tabs.length) {
-        const newTab = tabIndex < this.tabsNumber ? this.tabs[tabIndex] : this.tabs[tabIndex - 1];
+    // Empty dock is always closed, independent of selectedTabId. This also
+    // covers terminal/log tabs that close themselves after disconnecting.
+    if (!this.tabs.length) {
+      this.selectedTabId = undefined;
+      this.close();
 
-        this.selectTab(newTab.id);
-      } else {
-        this.selectedTabId = undefined;
-        this.close();
-      }
+      return;
+    }
+
+    if (wasSelected) {
+      const newTab = tabIndex < this.tabsNumber ? this.tabs[tabIndex] : this.tabs[tabIndex - 1];
+
+      this.selectTab(newTab.id);
     }
   }
 
