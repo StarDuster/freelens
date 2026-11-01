@@ -438,6 +438,32 @@ exports[`download logs options in logs dock tab > opening pod logs > when logs a
                 Overview
               </div>
             </div>
+            <div
+              class="Tab flex gap-2 items-center"
+              data-is-active-test="false"
+              data-testid="tab-link-for-sidebar-item-leaderworkerset"
+              role="tab"
+              tabindex="0"
+            >
+              <div
+                class="label"
+              >
+                LeaderWorkerSets
+              </div>
+            </div>
+            <div
+              class="Tab flex gap-2 items-center"
+              data-is-active-test="false"
+              data-testid="tab-link-for-sidebar-item-rolebasedgroup"
+              role="tab"
+              tabindex="0"
+            >
+              <div
+                class="label"
+              >
+                RoleBasedGroups
+              </div>
+            </div>
           </div>
           <main
             class="scrollable"
@@ -1480,6 +1506,32 @@ exports[`download logs options in logs dock tab > opening pod logs > when logs n
                 class="label"
               >
                 Overview
+              </div>
+            </div>
+            <div
+              class="Tab flex gap-2 items-center"
+              data-is-active-test="false"
+              data-testid="tab-link-for-sidebar-item-leaderworkerset"
+              role="tab"
+              tabindex="0"
+            >
+              <div
+                class="label"
+              >
+                LeaderWorkerSets
+              </div>
+            </div>
+            <div
+              class="Tab flex gap-2 items-center"
+              data-is-active-test="false"
+              data-testid="tab-link-for-sidebar-item-rolebasedgroup"
+              role="tab"
+              tabindex="0"
+            >
+              <div
+                class="label"
+              >
+                RoleBasedGroups
               </div>
             </div>
           </div>

@@ -10,9 +10,9 @@ import { Icon } from "@freelensapp/icon";
 import { showCheckedErrorNotificationInjectable } from "@freelensapp/notifications";
 import { cssNames } from "@freelensapp/utilities";
 import { withInjectables } from "@ogre-tools/injectable-react";
-import { action, computed, makeObservable, observable } from "mobx";
+import { computed, observable } from "mobx";
 import { observer } from "mobx-react";
-import React, { Component } from "react";
+import { Component } from "react";
 import apiManagerInjectable from "../../../../common/k8s-api/api-manager/manager.injectable";
 import { Dialog } from "../../dialog";
 import { Slider } from "../../slider";
@@ -44,12 +44,11 @@ interface Dependencies {
 
 @observer
 class NonInjectedRoleInstanceScaleDialog extends Component<RoleInstanceScaleDialogProps & Dependencies> {
-  @observable componentStates: ComponentScaleState[] = [];
-  @observable ready = false;
+  @observable accessor componentStates: ComponentScaleState[] = [];
+  @observable accessor ready = false;
 
   constructor(props: RoleInstanceScaleDialogProps & Dependencies) {
     super(props);
-    makeObservable(this);
   }
 
   close = () => {
@@ -98,7 +97,7 @@ class NonInjectedRoleInstanceScaleDialog extends Component<RoleInstanceScaleDial
     this.componentStates = [];
   };
 
-  @action setDesiredSize = (index: number, value: number) => {
+  setDesiredSize = (index: number, value: number) => {
     const component = this.componentStates[index];
     if (component) {
       component.desiredSize = Math.max(0, Math.min(this.scaleMaxFor(component.currentSize), value));

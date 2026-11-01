@@ -10,9 +10,9 @@ import { Icon } from "@freelensapp/icon";
 import { showCheckedErrorNotificationInjectable } from "@freelensapp/notifications";
 import { cssNames } from "@freelensapp/utilities";
 import { withInjectables } from "@ogre-tools/injectable-react";
-import { action, computed, makeObservable, observable } from "mobx";
+import { computed, observable } from "mobx";
 import { observer } from "mobx-react";
-import React, { Component } from "react";
+import { Component } from "react";
 import apiManagerInjectable from "../../../../common/k8s-api/api-manager/manager.injectable";
 import { Dialog } from "../../dialog";
 import { Slider } from "../../slider";
@@ -44,12 +44,11 @@ interface Dependencies {
 
 @observer
 class NonInjectedRoleBasedGroupScaleDialog extends Component<RoleBasedGroupScaleDialogProps & Dependencies> {
-  @observable roleStates: RoleScaleState[] = [];
-  @observable ready = false;
+  @observable accessor roleStates: RoleScaleState[] = [];
+  @observable accessor ready = false;
 
   constructor(props: RoleBasedGroupScaleDialogProps & Dependencies) {
     super(props);
-    makeObservable(this);
   }
 
   close = () => {
@@ -98,7 +97,7 @@ class NonInjectedRoleBasedGroupScaleDialog extends Component<RoleBasedGroupScale
     this.roleStates = [];
   };
 
-  @action setDesiredReplicas = (index: number, value: number) => {
+  setDesiredReplicas = (index: number, value: number) => {
     const role = this.roleStates[index];
     if (role) {
       role.desiredReplicas = Math.max(0, Math.min(this.scaleMaxFor(role.currentReplicas), value));

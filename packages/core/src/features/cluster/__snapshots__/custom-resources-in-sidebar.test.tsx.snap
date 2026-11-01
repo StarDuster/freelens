@@ -437,6 +437,32 @@ exports[`cluster - custom resources in sidebar > renders 1`] = `
               Overview
             </div>
           </div>
+          <div
+            class="Tab flex gap-2 items-center"
+            data-is-active-test="false"
+            data-testid="tab-link-for-sidebar-item-leaderworkerset"
+            role="tab"
+            tabindex="0"
+          >
+            <div
+              class="label"
+            >
+              LeaderWorkerSets
+            </div>
+          </div>
+          <div
+            class="Tab flex gap-2 items-center"
+            data-is-active-test="false"
+            data-testid="tab-link-for-sidebar-item-rolebasedgroup"
+            role="tab"
+            tabindex="0"
+          >
+            <div
+              class="label"
+            >
+              RoleBasedGroups
+            </div>
+          </div>
         </div>
         <main
           class="scrollable"
@@ -1152,6 +1178,32 @@ exports[`cluster - custom resources in sidebar > when custom resource definition
               Overview
             </div>
           </div>
+          <div
+            class="Tab flex gap-2 items-center"
+            data-is-active-test="false"
+            data-testid="tab-link-for-sidebar-item-leaderworkerset"
+            role="tab"
+            tabindex="0"
+          >
+            <div
+              class="label"
+            >
+              LeaderWorkerSets
+            </div>
+          </div>
+          <div
+            class="Tab flex gap-2 items-center"
+            data-is-active-test="false"
+            data-testid="tab-link-for-sidebar-item-rolebasedgroup"
+            role="tab"
+            tabindex="0"
+          >
+            <div
+              class="label"
+            >
+              RoleBasedGroups
+            </div>
+          </div>
         </div>
         <main
           class="scrollable"
@@ -1828,6 +1880,32 @@ exports[`cluster - custom resources in sidebar > when custom resource exists > r
               class="label"
             >
               Overview
+            </div>
+          </div>
+          <div
+            class="Tab flex gap-2 items-center"
+            data-is-active-test="false"
+            data-testid="tab-link-for-sidebar-item-leaderworkerset"
+            role="tab"
+            tabindex="0"
+          >
+            <div
+              class="label"
+            >
+              LeaderWorkerSets
+            </div>
+          </div>
+          <div
+            class="Tab flex gap-2 items-center"
+            data-is-active-test="false"
+            data-testid="tab-link-for-sidebar-item-rolebasedgroup"
+            role="tab"
+            tabindex="0"
+          >
+            <div
+              class="label"
+            >
+              RoleBasedGroups
             </div>
           </div>
         </div>
@@ -2543,6 +2621,32 @@ exports[`cluster - custom resources in sidebar > when custom resource exists > w
               class="label"
             >
               Overview
+            </div>
+          </div>
+          <div
+            class="Tab flex gap-2 items-center"
+            data-is-active-test="false"
+            data-testid="tab-link-for-sidebar-item-leaderworkerset"
+            role="tab"
+            tabindex="0"
+          >
+            <div
+              class="label"
+            >
+              LeaderWorkerSets
+            </div>
+          </div>
+          <div
+            class="Tab flex gap-2 items-center"
+            data-is-active-test="false"
+            data-testid="tab-link-for-sidebar-item-rolebasedgroup"
+            role="tab"
+            tabindex="0"
+          >
+            <div
+              class="label"
+            >
+              RoleBasedGroups
             </div>
           </div>
         </div>
@@ -3306,6 +3410,32 @@ exports[`cluster - custom resources in sidebar > when custom resource exists > w
               Overview
             </div>
           </div>
+          <div
+            class="Tab flex gap-2 items-center"
+            data-is-active-test="false"
+            data-testid="tab-link-for-sidebar-item-leaderworkerset"
+            role="tab"
+            tabindex="0"
+          >
+            <div
+              class="label"
+            >
+              LeaderWorkerSets
+            </div>
+          </div>
+          <div
+            class="Tab flex gap-2 items-center"
+            data-is-active-test="false"
+            data-testid="tab-link-for-sidebar-item-rolebasedgroup"
+            role="tab"
+            tabindex="0"
+          >
+            <div
+              class="label"
+            >
+              RoleBasedGroups
+            </div>
+          </div>
         </div>
         <main
           class="scrollable"
@@ -4019,6 +4149,32 @@ exports[`cluster - custom resources in sidebar > when custom resource exists > w
               class="label"
             >
               Overview
+            </div>
+          </div>
+          <div
+            class="Tab flex gap-2 items-center"
+            data-is-active-test="false"
+            data-testid="tab-link-for-sidebar-item-leaderworkerset"
+            role="tab"
+            tabindex="0"
+          >
+            <div
+              class="label"
+            >
+              LeaderWorkerSets
+            </div>
+          </div>
+          <div
+            class="Tab flex gap-2 items-center"
+            data-is-active-test="false"
+            data-testid="tab-link-for-sidebar-item-rolebasedgroup"
+            role="tab"
+            tabindex="0"
+          >
+            <div
+              class="label"
+            >
+              RoleBasedGroups
             </div>
           </div>
         </div>
@@ -4765,6 +4921,32 @@ exports[`cluster - custom resources in sidebar > when custom resource exists > w
               class="label"
             >
               Overview
+            </div>
+          </div>
+          <div
+            class="Tab flex gap-2 items-center"
+            data-is-active-test="false"
+            data-testid="tab-link-for-sidebar-item-leaderworkerset"
+            role="tab"
+            tabindex="0"
+          >
+            <div
+              class="label"
+            >
+              LeaderWorkerSets
+            </div>
+          </div>
+          <div
+            class="Tab flex gap-2 items-center"
+            data-is-active-test="false"
+            data-testid="tab-link-for-sidebar-item-rolebasedgroup"
+            role="tab"
+            tabindex="0"
+          >
+            <div
+              class="label"
+            >
+              RoleBasedGroups
             </div>
           </div>
         </div>
@@ -5557,6 +5739,32 @@ exports[`cluster - custom resources in sidebar > when custom resource exists > w
               class="label"
             >
               Overview
+            </div>
+          </div>
+          <div
+            class="Tab flex gap-2 items-center"
+            data-is-active-test="false"
+            data-testid="tab-link-for-sidebar-item-leaderworkerset"
+            role="tab"
+            tabindex="0"
+          >
+            <div
+              class="label"
+            >
+              LeaderWorkerSets
+            </div>
+          </div>
+          <div
+            class="Tab flex gap-2 items-center"
+            data-is-active-test="false"
+            data-testid="tab-link-for-sidebar-item-rolebasedgroup"
+            role="tab"
+            tabindex="0"
+          >
+            <div
+              class="label"
+            >
+              RoleBasedGroups
             </div>
           </div>
         </div>

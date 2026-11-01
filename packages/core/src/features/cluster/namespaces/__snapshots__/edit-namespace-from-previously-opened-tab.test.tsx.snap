@@ -464,6 +464,32 @@ exports[`cluster/namespaces - edit namespaces from previously opened tab > given
                 Overview
               </div>
             </div>
+            <div
+              class="Tab flex gap-2 items-center"
+              data-is-active-test="false"
+              data-testid="tab-link-for-sidebar-item-leaderworkerset"
+              role="tab"
+              tabindex="0"
+            >
+              <div
+                class="label"
+              >
+                LeaderWorkerSets
+              </div>
+            </div>
+            <div
+              class="Tab flex gap-2 items-center"
+              data-is-active-test="false"
+              data-testid="tab-link-for-sidebar-item-rolebasedgroup"
+              role="tab"
+              tabindex="0"
+            >
+              <div
+                class="label"
+              >
+                RoleBasedGroups
+              </div>
+            </div>
           </div>
           <main
             class="scrollable"
@@ -1178,6 +1204,32 @@ exports[`cluster/namespaces - edit namespaces from previously opened tab > given
                 class="label"
               >
                 Overview
+              </div>
+            </div>
+            <div
+              class="Tab flex gap-2 items-center"
+              data-is-active-test="false"
+              data-testid="tab-link-for-sidebar-item-leaderworkerset"
+              role="tab"
+              tabindex="0"
+            >
+              <div
+                class="label"
+              >
+                LeaderWorkerSets
+              </div>
+            </div>
+            <div
+              class="Tab flex gap-2 items-center"
+              data-is-active-test="false"
+              data-testid="tab-link-for-sidebar-item-rolebasedgroup"
+              role="tab"
+              tabindex="0"
+            >
+              <div
+                class="label"
+              >
+                RoleBasedGroups
               </div>
             </div>
           </div>

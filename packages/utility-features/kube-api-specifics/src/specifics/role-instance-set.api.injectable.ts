@@ -3,6 +3,7 @@
  * Licensed under MIT License. See LICENSE in root directory for more information.
  */
 
+import assert from "node:assert";
 import { RoleInstanceSetApi } from "@freelensapp/kube-api";
 import {
   logDebugInjectionToken,
@@ -11,7 +12,6 @@ import {
   logWarningInjectionToken,
 } from "@freelensapp/logger";
 import { getInjectable } from "@ogre-tools/injectable";
-import assert from "assert";
 import { storesAndApisCanBeCreatedInjectionToken } from "./can-be-created-token";
 import { maybeKubeApiInjectable } from "./maybe-kube-api.injectable";
 import { kubeApiInjectionToken } from "./token";

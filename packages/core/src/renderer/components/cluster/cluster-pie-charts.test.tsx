@@ -7,9 +7,11 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
 import { act, screen } from "@testing-library/react";
 import { computed, observable } from "mobx";
+import requestAllNodeMetricsInjectable from "../../../common/k8s-api/endpoints/metrics.api/request-metrics-for-all-nodes.injectable";
 import { getDiForUnitTesting } from "../../getDiForUnitTesting";
 import activeThemeInjectable from "../../themes/active.injectable";
 import { renderFor } from "../test-utils/renderFor";
+import podStoreInjectable from "../workloads-pods/store.injectable";
 import clusterOverviewMetricsInjectable from "./cluster-metrics.injectable";
 import { ClusterPieCharts } from "./cluster-pie-charts";
 import selectedMetricsTimeRangeInjectable from "./overview/selected-metrics-time-range.injectable";
@@ -53,6 +55,10 @@ describe("ClusterPieCharts", () => {
 
   it("does not render stale pie charts on first mount while a reused singleton is pending", () => {
     const di = getDiForUnitTesting();
+
+    di.override(podStoreInjectable, () => ({ items: [] }) as never);
+    di.override(requestAllNodeMetricsInjectable, () => vi.fn().mockResolvedValue({}));
+
     const render = renderFor(di);
 
     di.override(activeThemeInjectable, () =>
@@ -95,7 +101,9 @@ describe("ClusterPieCharts", () => {
     di.override(selectedNodeRoleForMetricsInjectable, () => ({
       value: computed(() => "worker" as const),
       set: vi.fn(),
-      nodes: computed(() => [{ getName: () => "worker-1" }] as never),
+      nodes: computed(
+        () => [{ getName: () => "worker-1", getConditions: () => [], isUnschedulable: () => false }] as never,
+      ),
       hasMasterNodes: computed(() => true),
       hasWorkerNodes: computed(() => true),
     }));
@@ -108,6 +116,10 @@ describe("ClusterPieCharts", () => {
 
   it("does not keep rendering stale values during a pending range transition", () => {
     const di = getDiForUnitTesting();
+
+    di.override(podStoreInjectable, () => ({ items: [] }) as never);
+    di.override(requestAllNodeMetricsInjectable, () => vi.fn().mockResolvedValue({}));
+
     const render = renderFor(di);
     const timeRange = observable.box({ duration: null, customStart: 100, customEnd: 200 });
     const pending = observable.box(false);
@@ -153,7 +165,9 @@ describe("ClusterPieCharts", () => {
     di.override(selectedNodeRoleForMetricsInjectable, () => ({
       value: computed(() => "worker" as const),
       set: vi.fn(),
-      nodes: computed(() => [{ getName: () => "worker-1" }] as never),
+      nodes: computed(
+        () => [{ getName: () => "worker-1", getConditions: () => [], isUnschedulable: () => false }] as never,
+      ),
       hasMasterNodes: computed(() => true),
       hasWorkerNodes: computed(() => true),
     }));
