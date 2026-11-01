@@ -6,7 +6,6 @@
 
 import { Icon } from "@freelensapp/icon";
 import { withInjectables } from "@ogre-tools/injectable-react";
-import React from "react";
 import { MenuItem } from "../menu";
 import openRoleBasedGroupScaleDialogInjectable from "./scale/open.injectable";
 

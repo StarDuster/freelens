@@ -7,7 +7,7 @@
 .VirtualList {
   width: 100%;
 
-  > div > .list {
+  .list {
     overflow-y: auto !important;
     scrollbar-gutter: stable;
   }

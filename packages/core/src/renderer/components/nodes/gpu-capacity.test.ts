@@ -5,6 +5,7 @@
  */
 
 import { Node } from "@freelensapp/kube-object";
+import { describe, expect, it } from "vitest";
 import { canScheduleGpuWorkloadsOnNode, getNodeGpuCapacity, isNodeReady } from "./gpu-capacity";
 
 const createNode = ({

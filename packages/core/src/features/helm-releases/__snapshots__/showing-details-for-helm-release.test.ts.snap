@@ -1559,7 +1559,8 @@ exports[`showing details for helm release > given application is started > when 
                   class="Table flex flex-col HelmReleases grow shrink-0 basis-0 dark selectable scrollable sortable autoSize virtual"
                 >
                   <div
-                    class="TableHead sticky nowrap topLine"
+                    class="TableHead grid-columns sticky nowrap topLine"
+                    style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                   >
                     <div
                       class="TableCell checkbox"
@@ -1769,12 +1770,14 @@ exports[`showing details for helm release > given application is started > when 
                       style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                     >
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="0"
                         style="position: absolute; left: 0px; transform: translateY(0px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-release-row-for-some-namespace/some-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell checkbox"
@@ -1901,12 +1904,14 @@ exports[`showing details for helm release > given application is started > when 
                         </div>
                       </div>
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="1"
                         style="position: absolute; left: 0px; transform: translateY(33px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-release-row-for-some-other-namespace/some-other-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell checkbox"
@@ -2787,7 +2792,8 @@ exports[`showing details for helm release > given application is started > when 
                   class="Table flex flex-col HelmReleases grow shrink-0 basis-0 dark selectable scrollable sortable autoSize virtual"
                 >
                   <div
-                    class="TableHead sticky nowrap topLine"
+                    class="TableHead grid-columns sticky nowrap topLine"
+                    style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                   >
                     <div
                       class="TableCell checkbox"
@@ -2997,12 +3003,14 @@ exports[`showing details for helm release > given application is started > when 
                       style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                     >
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="0"
                         style="position: absolute; left: 0px; transform: translateY(0px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-release-row-for-some-namespace/some-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell checkbox"
@@ -3129,12 +3137,14 @@ exports[`showing details for helm release > given application is started > when 
                         </div>
                       </div>
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="1"
                         style="position: absolute; left: 0px; transform: translateY(33px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-release-row-for-some-other-namespace/some-other-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell checkbox"
@@ -4076,7 +4086,8 @@ exports[`showing details for helm release > given application is started > when 
                   class="Table flex flex-col HelmReleases grow shrink-0 basis-0 dark selectable scrollable sortable autoSize virtual"
                 >
                   <div
-                    class="TableHead sticky nowrap topLine"
+                    class="TableHead grid-columns sticky nowrap topLine"
+                    style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                   >
                     <div
                       class="TableCell checkbox"
@@ -4286,12 +4297,14 @@ exports[`showing details for helm release > given application is started > when 
                       style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                     >
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="0"
                         style="position: absolute; left: 0px; transform: translateY(0px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-release-row-for-some-namespace/some-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell checkbox"
@@ -4418,12 +4431,14 @@ exports[`showing details for helm release > given application is started > when 
                         </div>
                       </div>
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="1"
                         style="position: absolute; left: 0px; transform: translateY(33px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-release-row-for-some-other-namespace/some-other-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell checkbox"
@@ -5365,7 +5380,8 @@ exports[`showing details for helm release > given application is started > when 
                   class="Table flex flex-col HelmReleases grow shrink-0 basis-0 dark selectable scrollable sortable autoSize virtual"
                 >
                   <div
-                    class="TableHead sticky nowrap topLine"
+                    class="TableHead grid-columns sticky nowrap topLine"
+                    style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                   >
                     <div
                       class="TableCell checkbox"
@@ -5575,12 +5591,14 @@ exports[`showing details for helm release > given application is started > when 
                       style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                     >
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="0"
                         style="position: absolute; left: 0px; transform: translateY(0px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-release-row-for-some-namespace/some-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell checkbox"
@@ -5707,12 +5725,14 @@ exports[`showing details for helm release > given application is started > when 
                         </div>
                       </div>
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="1"
                         style="position: absolute; left: 0px; transform: translateY(33px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-release-row-for-some-other-namespace/some-other-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell checkbox"
@@ -6900,7 +6920,8 @@ exports[`showing details for helm release > given application is started > when 
                   class="Table flex flex-col HelmReleases grow shrink-0 basis-0 dark selectable scrollable sortable autoSize virtual"
                 >
                   <div
-                    class="TableHead sticky nowrap topLine"
+                    class="TableHead grid-columns sticky nowrap topLine"
+                    style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                   >
                     <div
                       class="TableCell checkbox"
@@ -7110,12 +7131,14 @@ exports[`showing details for helm release > given application is started > when 
                       style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                     >
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="0"
                         style="position: absolute; left: 0px; transform: translateY(0px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-release-row-for-some-namespace/some-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell checkbox"
@@ -7242,12 +7265,14 @@ exports[`showing details for helm release > given application is started > when 
                         </div>
                       </div>
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="1"
                         style="position: absolute; left: 0px; transform: translateY(33px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-release-row-for-some-other-namespace/some-other-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell checkbox"
@@ -8435,7 +8460,8 @@ exports[`showing details for helm release > given application is started > when 
                   class="Table flex flex-col HelmReleases grow shrink-0 basis-0 dark selectable scrollable sortable autoSize virtual"
                 >
                   <div
-                    class="TableHead sticky nowrap topLine"
+                    class="TableHead grid-columns sticky nowrap topLine"
+                    style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                   >
                     <div
                       class="TableCell checkbox"
@@ -8645,12 +8671,14 @@ exports[`showing details for helm release > given application is started > when 
                       style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                     >
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="0"
                         style="position: absolute; left: 0px; transform: translateY(0px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-release-row-for-some-namespace/some-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell checkbox"
@@ -8777,12 +8805,14 @@ exports[`showing details for helm release > given application is started > when 
                         </div>
                       </div>
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="1"
                         style="position: absolute; left: 0px; transform: translateY(33px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-release-row-for-some-other-namespace/some-other-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell checkbox"
@@ -9970,7 +10000,8 @@ exports[`showing details for helm release > given application is started > when 
                   class="Table flex flex-col HelmReleases grow shrink-0 basis-0 dark selectable scrollable sortable autoSize virtual"
                 >
                   <div
-                    class="TableHead sticky nowrap topLine"
+                    class="TableHead grid-columns sticky nowrap topLine"
+                    style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                   >
                     <div
                       class="TableCell checkbox"
@@ -11230,7 +11261,8 @@ exports[`showing details for helm release > given application is started > when 
                   class="Table flex flex-col HelmReleases grow shrink-0 basis-0 dark selectable scrollable sortable autoSize virtual"
                 >
                   <div
-                    class="TableHead sticky nowrap topLine"
+                    class="TableHead grid-columns sticky nowrap topLine"
+                    style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                   >
                     <div
                       class="TableCell checkbox"
@@ -12492,7 +12524,8 @@ exports[`showing details for helm release > given application is started > when 
                   class="Table flex flex-col HelmReleases grow shrink-0 basis-0 dark selectable scrollable sortable autoSize virtual"
                 >
                   <div
-                    class="TableHead sticky nowrap topLine"
+                    class="TableHead grid-columns sticky nowrap topLine"
+                    style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                   >
                     <div
                       class="TableCell checkbox"
@@ -12702,12 +12735,14 @@ exports[`showing details for helm release > given application is started > when 
                       style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                     >
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="0"
                         style="position: absolute; left: 0px; transform: translateY(0px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-release-row-for-some-namespace/some-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell checkbox"
@@ -12834,12 +12869,14 @@ exports[`showing details for helm release > given application is started > when 
                         </div>
                       </div>
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="1"
                         style="position: absolute; left: 0px; transform: translateY(33px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-release-row-for-some-other-namespace/some-other-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell checkbox"
@@ -14027,7 +14064,8 @@ exports[`showing details for helm release > given application is started > when 
                   class="Table flex flex-col HelmReleases grow shrink-0 basis-0 dark selectable scrollable sortable autoSize virtual"
                 >
                   <div
-                    class="TableHead sticky nowrap topLine"
+                    class="TableHead grid-columns sticky nowrap topLine"
+                    style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                   >
                     <div
                       class="TableCell checkbox"
@@ -14237,12 +14275,14 @@ exports[`showing details for helm release > given application is started > when 
                       style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                     >
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="0"
                         style="position: absolute; left: 0px; transform: translateY(0px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-release-row-for-some-namespace/some-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell checkbox"
@@ -14369,12 +14409,14 @@ exports[`showing details for helm release > given application is started > when 
                         </div>
                       </div>
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="1"
                         style="position: absolute; left: 0px; transform: translateY(33px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-release-row-for-some-other-namespace/some-other-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell checkbox"
@@ -15316,7 +15358,8 @@ exports[`showing details for helm release > given application is started > when 
                   class="Table flex flex-col HelmReleases grow shrink-0 basis-0 dark selectable scrollable sortable autoSize virtual"
                 >
                   <div
-                    class="TableHead sticky nowrap topLine"
+                    class="TableHead grid-columns sticky nowrap topLine"
+                    style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                   >
                     <div
                       class="TableCell checkbox"
@@ -15526,12 +15569,14 @@ exports[`showing details for helm release > given application is started > when 
                       style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                     >
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="0"
                         style="position: absolute; left: 0px; transform: translateY(0px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-release-row-for-some-namespace/some-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell checkbox"
@@ -15658,12 +15703,14 @@ exports[`showing details for helm release > given application is started > when 
                         </div>
                       </div>
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="1"
                         style="position: absolute; left: 0px; transform: translateY(33px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-release-row-for-some-other-namespace/some-other-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell checkbox"
@@ -16607,7 +16654,8 @@ exports[`showing details for helm release > given application is started > when 
                   class="Table flex flex-col HelmReleases grow shrink-0 basis-0 dark selectable scrollable sortable autoSize virtual"
                 >
                   <div
-                    class="TableHead sticky nowrap topLine"
+                    class="TableHead grid-columns sticky nowrap topLine"
+                    style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                   >
                     <div
                       class="TableCell checkbox"
@@ -16817,12 +16865,14 @@ exports[`showing details for helm release > given application is started > when 
                       style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                     >
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="0"
                         style="position: absolute; left: 0px; transform: translateY(0px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-release-row-for-some-namespace/some-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell checkbox"
@@ -16949,12 +16999,14 @@ exports[`showing details for helm release > given application is started > when 
                         </div>
                       </div>
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="1"
                         style="position: absolute; left: 0px; transform: translateY(33px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-release-row-for-some-other-namespace/some-other-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell checkbox"
@@ -17835,7 +17887,8 @@ exports[`showing details for helm release > given application is started > when 
                   class="Table flex flex-col HelmReleases grow shrink-0 basis-0 dark selectable scrollable sortable autoSize virtual"
                 >
                   <div
-                    class="TableHead sticky nowrap topLine"
+                    class="TableHead grid-columns sticky nowrap topLine"
+                    style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                   >
                     <div
                       class="TableCell checkbox"
@@ -18045,12 +18098,14 @@ exports[`showing details for helm release > given application is started > when 
                       style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                     >
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="0"
                         style="position: absolute; left: 0px; transform: translateY(0px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-release-row-for-some-namespace/some-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell checkbox"
@@ -18177,12 +18232,14 @@ exports[`showing details for helm release > given application is started > when 
                         </div>
                       </div>
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="1"
                         style="position: absolute; left: 0px; transform: translateY(33px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-release-row-for-some-other-namespace/some-other-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell checkbox"
@@ -19124,7 +19181,8 @@ exports[`showing details for helm release > given application is started > when 
                   class="Table flex flex-col HelmReleases grow shrink-0 basis-0 dark selectable scrollable sortable autoSize virtual"
                 >
                   <div
-                    class="TableHead sticky nowrap topLine"
+                    class="TableHead grid-columns sticky nowrap topLine"
+                    style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                   >
                     <div
                       class="TableCell checkbox"
@@ -19334,12 +19392,14 @@ exports[`showing details for helm release > given application is started > when 
                       style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                     >
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="0"
                         style="position: absolute; left: 0px; transform: translateY(0px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-release-row-for-some-namespace/some-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell checkbox"
@@ -19466,12 +19526,14 @@ exports[`showing details for helm release > given application is started > when 
                         </div>
                       </div>
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="1"
                         style="position: absolute; left: 0px; transform: translateY(33px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-release-row-for-some-other-namespace/some-other-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell checkbox"
@@ -20413,7 +20475,8 @@ exports[`showing details for helm release > given application is started > when 
                   class="Table flex flex-col HelmReleases grow shrink-0 basis-0 dark selectable scrollable sortable autoSize virtual"
                 >
                   <div
-                    class="TableHead sticky nowrap topLine"
+                    class="TableHead grid-columns sticky nowrap topLine"
+                    style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                   >
                     <div
                       class="TableCell checkbox"
@@ -20623,12 +20686,14 @@ exports[`showing details for helm release > given application is started > when 
                       style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                     >
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="0"
                         style="position: absolute; left: 0px; transform: translateY(0px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-release-row-for-some-namespace/some-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell checkbox"
@@ -20755,12 +20820,14 @@ exports[`showing details for helm release > given application is started > when 
                         </div>
                       </div>
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="1"
                         style="position: absolute; left: 0px; transform: translateY(33px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-release-row-for-some-other-namespace/some-other-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell checkbox"
@@ -21702,7 +21769,8 @@ exports[`showing details for helm release > given application is started > when 
                   class="Table flex flex-col HelmReleases grow shrink-0 basis-0 dark selectable scrollable sortable autoSize virtual"
                 >
                   <div
-                    class="TableHead sticky nowrap topLine"
+                    class="TableHead grid-columns sticky nowrap topLine"
+                    style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                   >
                     <div
                       class="TableCell checkbox"
@@ -21912,12 +21980,14 @@ exports[`showing details for helm release > given application is started > when 
                       style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                     >
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="0"
                         style="position: absolute; left: 0px; transform: translateY(0px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-release-row-for-some-namespace/some-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell checkbox"
@@ -22044,12 +22114,14 @@ exports[`showing details for helm release > given application is started > when 
                         </div>
                       </div>
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="1"
                         style="position: absolute; left: 0px; transform: translateY(33px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-release-row-for-some-other-namespace/some-other-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell checkbox"
@@ -23237,7 +23309,8 @@ exports[`showing details for helm release > given application is started > when 
                   class="Table flex flex-col HelmReleases grow shrink-0 basis-0 dark selectable scrollable sortable autoSize virtual"
                 >
                   <div
-                    class="TableHead sticky nowrap topLine"
+                    class="TableHead grid-columns sticky nowrap topLine"
+                    style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                   >
                     <div
                       class="TableCell checkbox"

@@ -8,7 +8,7 @@ import "./nodes.scss";
 
 import { Icon } from "@freelensapp/icon";
 import { formatNodeTaint } from "@freelensapp/kube-object";
-import { Tooltip, TooltipPosition, withTooltip } from "@freelensapp/tooltip";
+import { Tooltip, TooltipPosition } from "@freelensapp/tooltip";
 import { bytesToUnits, cpuUnitsToNumber, interval, unitsToBytes } from "@freelensapp/utilities";
 import { withInjectables } from "@ogre-tools/injectable-react";
 import { observable, observableRef } from "mobx";
@@ -69,10 +69,6 @@ interface UsageArgs {
   usageText?: string;
   tooltipLines?: string[];
 }
-
-const GpuCapacityWarningIcon = withTooltip(({ ...elemProps }: React.HTMLAttributes<HTMLDivElement>) => (
-  <Icon material="warning_amber" className="warning" {...elemProps} />
-));
 
 interface Dependencies {
   requestAllNodeMetrics: RequestAllNodeMetrics;
@@ -475,10 +471,9 @@ class NonInjectedNodesRoute extends React.Component<Dependencies> {
     });
   }
 
-  @computed
   private get gpuAllocatedByNode(): Map<string, number> {
     const result = new Map<string, number>();
-    const pods = this.props.podStore.items;
+    const pods = this.observableProps.podStore.items;
 
     for (const pod of pods) {
       const phase = pod.getStatusPhase();
@@ -527,7 +522,9 @@ class NonInjectedNodesRoute extends React.Component<Dependencies> {
       <span className="flex gaps align-center">
         <span className={isFullyFree ? "gpu-free" : undefined}>{`${allocated}/${capacity}`}</span>
         {hasCapacityWarning && (
-          <GpuCapacityWarningIcon
+          <Icon
+            material="warning_amber"
+            className="warning"
             tooltip={{
               formatters: { nowrap: true },
               children: <div>GPU capacity is {capacity}, expected 8</div>,

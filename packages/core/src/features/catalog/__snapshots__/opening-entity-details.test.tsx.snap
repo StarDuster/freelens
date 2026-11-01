@@ -973,6 +973,7 @@ exports[`opening catalog entity details panel > when navigated to the catalog > 
                         style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                       >
                         <div
+                          class="virtual-table-row"
                           data-react-window-index="0"
                           style="position: absolute; left: 0px; transform: translateY(0px); height: 36px; width: 100%;"
                         >
@@ -1063,6 +1064,7 @@ exports[`opening catalog entity details panel > when navigated to the catalog > 
                           </div>
                         </div>
                         <div
+                          class="virtual-table-row"
                           data-react-window-index="1"
                           style="position: absolute; left: 0px; transform: translateY(36px); height: 36px; width: 100%;"
                         >
@@ -1153,6 +1155,7 @@ exports[`opening catalog entity details panel > when navigated to the catalog > 
                           </div>
                         </div>
                         <div
+                          class="virtual-table-row"
                           data-react-window-index="2"
                           style="position: absolute; left: 0px; transform: translateY(72px); height: 36px; width: 100%;"
                         >
@@ -1971,6 +1974,7 @@ exports[`opening catalog entity details panel > when navigated to the catalog > 
                         style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                       >
                         <div
+                          class="virtual-table-row"
                           data-react-window-index="0"
                           style="position: absolute; left: 0px; transform: translateY(0px); height: 36px; width: 100%;"
                         >
@@ -2061,6 +2065,7 @@ exports[`opening catalog entity details panel > when navigated to the catalog > 
                           </div>
                         </div>
                         <div
+                          class="virtual-table-row"
                           data-react-window-index="1"
                           style="position: absolute; left: 0px; transform: translateY(36px); height: 36px; width: 100%;"
                         >
@@ -2151,6 +2156,7 @@ exports[`opening catalog entity details panel > when navigated to the catalog > 
                           </div>
                         </div>
                         <div
+                          class="virtual-table-row"
                           data-react-window-index="2"
                           style="position: absolute; left: 0px; transform: translateY(72px); height: 36px; width: 100%;"
                         >
@@ -3001,6 +3007,7 @@ exports[`opening catalog entity details panel > when navigated to the catalog > 
                         style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                       >
                         <div
+                          class="virtual-table-row"
                           data-react-window-index="0"
                           style="position: absolute; left: 0px; transform: translateY(0px); height: 36px; width: 100%;"
                         >
@@ -3091,6 +3098,7 @@ exports[`opening catalog entity details panel > when navigated to the catalog > 
                           </div>
                         </div>
                         <div
+                          class="virtual-table-row"
                           data-react-window-index="1"
                           style="position: absolute; left: 0px; transform: translateY(36px); height: 36px; width: 100%;"
                         >
@@ -3181,6 +3189,7 @@ exports[`opening catalog entity details panel > when navigated to the catalog > 
                           </div>
                         </div>
                         <div
+                          class="virtual-table-row"
                           data-react-window-index="2"
                           style="position: absolute; left: 0px; transform: translateY(72px); height: 36px; width: 100%;"
                         >
@@ -4283,6 +4292,7 @@ exports[`opening catalog entity details panel > when navigated to the catalog > 
                         style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                       >
                         <div
+                          class="virtual-table-row"
                           data-react-window-index="0"
                           style="position: absolute; left: 0px; transform: translateY(0px); height: 36px; width: 100%;"
                         >
@@ -4373,6 +4383,7 @@ exports[`opening catalog entity details panel > when navigated to the catalog > 
                           </div>
                         </div>
                         <div
+                          class="virtual-table-row"
                           data-react-window-index="1"
                           style="position: absolute; left: 0px; transform: translateY(36px); height: 36px; width: 100%;"
                         >
@@ -4463,6 +4474,7 @@ exports[`opening catalog entity details panel > when navigated to the catalog > 
                           </div>
                         </div>
                         <div
+                          class="virtual-table-row"
                           data-react-window-index="2"
                           style="position: absolute; left: 0px; transform: translateY(72px); height: 36px; width: 100%;"
                         >
@@ -5533,6 +5545,7 @@ exports[`opening catalog entity details panel > when navigated to the catalog > 
                         style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                       >
                         <div
+                          class="virtual-table-row"
                           data-react-window-index="0"
                           style="position: absolute; left: 0px; transform: translateY(0px); height: 36px; width: 100%;"
                         >
@@ -5623,6 +5636,7 @@ exports[`opening catalog entity details panel > when navigated to the catalog > 
                           </div>
                         </div>
                         <div
+                          class="virtual-table-row"
                           data-react-window-index="1"
                           style="position: absolute; left: 0px; transform: translateY(36px); height: 36px; width: 100%;"
                         >
@@ -5713,6 +5727,7 @@ exports[`opening catalog entity details panel > when navigated to the catalog > 
                           </div>
                         </div>
                         <div
+                          class="virtual-table-row"
                           data-react-window-index="2"
                           style="position: absolute; left: 0px; transform: translateY(72px); height: 36px; width: 100%;"
                         >
@@ -6551,6 +6566,7 @@ exports[`opening catalog entity details panel > when navigated to the catalog > 
                         style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                       >
                         <div
+                          class="virtual-table-row"
                           data-react-window-index="0"
                           style="position: absolute; left: 0px; transform: translateY(0px); height: 36px; width: 100%;"
                         >
@@ -6641,6 +6657,7 @@ exports[`opening catalog entity details panel > when navigated to the catalog > 
                           </div>
                         </div>
                         <div
+                          class="virtual-table-row"
                           data-react-window-index="1"
                           style="position: absolute; left: 0px; transform: translateY(36px); height: 36px; width: 100%;"
                         >
@@ -6731,6 +6748,7 @@ exports[`opening catalog entity details panel > when navigated to the catalog > 
                           </div>
                         </div>
                         <div
+                          class="virtual-table-row"
                           data-react-window-index="2"
                           style="position: absolute; left: 0px; transform: translateY(72px); height: 36px; width: 100%;"
                         >
@@ -7740,6 +7758,7 @@ exports[`opening catalog entity details panel > when navigated to the catalog > 
                         style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                       >
                         <div
+                          class="virtual-table-row"
                           data-react-window-index="0"
                           style="position: absolute; left: 0px; transform: translateY(0px); height: 36px; width: 100%;"
                         >
@@ -7830,6 +7849,7 @@ exports[`opening catalog entity details panel > when navigated to the catalog > 
                           </div>
                         </div>
                         <div
+                          class="virtual-table-row"
                           data-react-window-index="1"
                           style="position: absolute; left: 0px; transform: translateY(36px); height: 36px; width: 100%;"
                         >
@@ -7920,6 +7940,7 @@ exports[`opening catalog entity details panel > when navigated to the catalog > 
                           </div>
                         </div>
                         <div
+                          class="virtual-table-row"
                           data-react-window-index="2"
                           style="position: absolute; left: 0px; transform: translateY(72px); height: 36px; width: 100%;"
                         >

@@ -154,7 +154,7 @@ export class DockStore implements DockStorageState {
           }
         });
       },
-      { fireImmediately: true, equals: comparer.structural },
+      { fireImmediately: true, equals: compareStructural },
     );
   }
 

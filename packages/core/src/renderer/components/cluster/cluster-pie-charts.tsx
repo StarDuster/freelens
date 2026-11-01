@@ -9,7 +9,7 @@ import { Spinner } from "@freelensapp/spinner";
 import { bytesToUnits, cssNames } from "@freelensapp/utilities";
 import { withInjectables } from "@ogre-tools/injectable-react";
 import { observer } from "mobx-react";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getMetricLastPoints } from "../../../common/k8s-api/endpoints/metrics.api";
 import requestAllNodeMetricsInjectable from "../../../common/k8s-api/endpoints/metrics.api/request-metrics-for-all-nodes.injectable";
 import activeThemeInjectable from "../../themes/active.injectable";
@@ -296,7 +296,7 @@ const renderCharts = (
     labels: [`Usage: ${podUsage || 0}`, `Capacity: ${podAllocatableCapacity}`],
   };
 
-  const hasGpu = isNumber(gpuCapacity) && gpuCapacity > 0;
+  const hasGpu = typeof gpuCapacity === "number" && gpuCapacity > 0;
   const gpuAllocatable = gpuAllocatableCapacity ?? gpuCapacity ?? 0;
   const gpuData: PieChartData | undefined = hasGpu
     ? {
@@ -314,7 +314,7 @@ const renderCharts = (
     : undefined;
 
   return (
-    <div className="flex justify-center grow shrink-0 basis-0 gap-2">
+    <div className="flex flex-wrap justify-center grow shrink-0 basis-0 gap-2">
       <div className={cssNames(styles.chart, "flex flex-col items-center grow shrink-0 basis-0")}>
         <PieChart
           data={cpuData}
@@ -400,9 +400,9 @@ const NonInjectedClusterPieCharts = observer(
     }
 
     const nodes = selectedNodeRoleForMetrics.nodes.get();
-    const [nodeMetrics, setNodeMetrics] = React.useState<NodeMetricData>();
+    const [nodeMetrics, setNodeMetrics] = useState<NodeMetricData>();
 
-    React.useEffect(() => {
+    useEffect(() => {
       let disposed = false;
 
       const refresh = async () => {

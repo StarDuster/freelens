@@ -438,6 +438,32 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                 Overview
               </div>
             </div>
+            <div
+              class="Tab flex gap-2 items-center"
+              data-is-active-test="false"
+              data-testid="tab-link-for-sidebar-item-leaderworkerset"
+              role="tab"
+              tabindex="0"
+            >
+              <div
+                class="label"
+              >
+                LeaderWorkerSets
+              </div>
+            </div>
+            <div
+              class="Tab flex gap-2 items-center"
+              data-is-active-test="false"
+              data-testid="tab-link-for-sidebar-item-rolebasedgroup"
+              role="tab"
+              tabindex="0"
+            >
+              <div
+                class="label"
+              >
+                RoleBasedGroups
+              </div>
+            </div>
           </div>
           <main
             class="scrollable"
@@ -1118,7 +1144,8 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                   class="Table flex flex-col HelmCharts grow shrink-0 basis-0 dark selectable scrollable sortable autoSize virtual"
                 >
                   <div
-                    class="TableHead sticky nowrap topLine"
+                    class="TableHead grid-columns sticky nowrap topLine"
+                    style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                   >
                     <div
                       class="TableCell icon nowrap"
@@ -1242,12 +1269,14 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                       style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                     >
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="0"
                         style="position: absolute; left: 0px; transform: translateY(0px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow selected nowrap"
+                          class="TableRow grid-columns selected nowrap"
                           data-testid="helm-chart-row-for-some-repository-some-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell icon"
@@ -1320,12 +1349,14 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                         </div>
                       </div>
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="1"
                         style="position: absolute; left: 0px; transform: translateY(33px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-chart-row-for-some-repository-some-other-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell icon"
@@ -2196,7 +2227,8 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                   class="Table flex flex-col HelmCharts grow shrink-0 basis-0 dark selectable scrollable sortable autoSize virtual"
                 >
                   <div
-                    class="TableHead sticky nowrap topLine"
+                    class="TableHead grid-columns sticky nowrap topLine"
+                    style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                   >
                     <div
                       class="TableCell icon nowrap"
@@ -2320,12 +2352,14 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                       style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                     >
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="0"
                         style="position: absolute; left: 0px; transform: translateY(0px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-chart-row-for-some-repository-some-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell icon"
@@ -2398,12 +2432,14 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                         </div>
                       </div>
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="1"
                         style="position: absolute; left: 0px; transform: translateY(33px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-chart-row-for-some-repository-some-other-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell icon"
@@ -3153,7 +3189,8 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                   class="Table flex flex-col HelmCharts grow shrink-0 basis-0 dark selectable scrollable sortable autoSize virtual"
                 >
                   <div
-                    class="TableHead sticky nowrap topLine"
+                    class="TableHead grid-columns sticky nowrap topLine"
+                    style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                   >
                     <div
                       class="TableCell icon nowrap"
@@ -3277,12 +3314,14 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                       style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                     >
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="0"
                         style="position: absolute; left: 0px; transform: translateY(0px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-chart-row-for-some-repository-some-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell icon"
@@ -3355,12 +3394,14 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                         </div>
                       </div>
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="1"
                         style="position: absolute; left: 0px; transform: translateY(33px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-chart-row-for-some-repository-some-other-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell icon"
@@ -4369,7 +4410,8 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                   class="Table flex flex-col HelmCharts grow shrink-0 basis-0 dark selectable scrollable sortable autoSize virtual"
                 >
                   <div
-                    class="TableHead sticky nowrap topLine"
+                    class="TableHead grid-columns sticky nowrap topLine"
+                    style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                   >
                     <div
                       class="TableCell icon nowrap"
@@ -4493,12 +4535,14 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                       style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                     >
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="0"
                         style="position: absolute; left: 0px; transform: translateY(0px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-chart-row-for-some-repository-some-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell icon"
@@ -4571,12 +4615,14 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                         </div>
                       </div>
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="1"
                         style="position: absolute; left: 0px; transform: translateY(33px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-chart-row-for-some-repository-some-other-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell icon"
@@ -5554,7 +5600,8 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                   class="Table flex flex-col HelmCharts grow shrink-0 basis-0 dark selectable scrollable sortable autoSize virtual"
                 >
                   <div
-                    class="TableHead sticky nowrap topLine"
+                    class="TableHead grid-columns sticky nowrap topLine"
+                    style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                   >
                     <div
                       class="TableCell icon nowrap"
@@ -5678,12 +5725,14 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                       style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                     >
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="0"
                         style="position: absolute; left: 0px; transform: translateY(0px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-chart-row-for-some-repository-some-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell icon"
@@ -5756,12 +5805,14 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                         </div>
                       </div>
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="1"
                         style="position: absolute; left: 0px; transform: translateY(33px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-chart-row-for-some-repository-some-other-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell icon"
@@ -6734,7 +6785,8 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                   class="Table flex flex-col HelmCharts grow shrink-0 basis-0 dark selectable scrollable sortable autoSize virtual"
                 >
                   <div
-                    class="TableHead sticky nowrap topLine"
+                    class="TableHead grid-columns sticky nowrap topLine"
+                    style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                   >
                     <div
                       class="TableCell icon nowrap"
@@ -6858,12 +6910,14 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                       style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                     >
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="0"
                         style="position: absolute; left: 0px; transform: translateY(0px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-chart-row-for-some-repository-some-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell icon"
@@ -6936,12 +6990,14 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                         </div>
                       </div>
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="1"
                         style="position: absolute; left: 0px; transform: translateY(33px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-chart-row-for-some-repository-some-other-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell icon"
@@ -7914,7 +7970,8 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                   class="Table flex flex-col HelmCharts grow shrink-0 basis-0 dark selectable scrollable sortable autoSize virtual"
                 >
                   <div
-                    class="TableHead sticky nowrap topLine"
+                    class="TableHead grid-columns sticky nowrap topLine"
+                    style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                   >
                     <div
                       class="TableCell icon nowrap"
@@ -8038,12 +8095,14 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                       style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                     >
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="0"
                         style="position: absolute; left: 0px; transform: translateY(0px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-chart-row-for-some-repository-some-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell icon"
@@ -8116,12 +8175,14 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                         </div>
                       </div>
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="1"
                         style="position: absolute; left: 0px; transform: translateY(33px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-chart-row-for-some-repository-some-other-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell icon"
@@ -9116,7 +9177,8 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                   class="Table flex flex-col HelmCharts grow shrink-0 basis-0 dark selectable scrollable sortable autoSize virtual"
                 >
                   <div
-                    class="TableHead sticky nowrap topLine"
+                    class="TableHead grid-columns sticky nowrap topLine"
+                    style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                   >
                     <div
                       class="TableCell icon nowrap"
@@ -9240,12 +9302,14 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                       style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                     >
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="0"
                         style="position: absolute; left: 0px; transform: translateY(0px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-chart-row-for-some-repository-some-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell icon"
@@ -9318,12 +9382,14 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                         </div>
                       </div>
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="1"
                         style="position: absolute; left: 0px; transform: translateY(33px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-chart-row-for-some-repository-some-other-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell icon"
@@ -10332,7 +10398,8 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                   class="Table flex flex-col HelmCharts grow shrink-0 basis-0 dark selectable scrollable sortable autoSize virtual"
                 >
                   <div
-                    class="TableHead sticky nowrap topLine"
+                    class="TableHead grid-columns sticky nowrap topLine"
+                    style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                   >
                     <div
                       class="TableCell icon nowrap"
@@ -10456,12 +10523,14 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                       style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                     >
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="0"
                         style="position: absolute; left: 0px; transform: translateY(0px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-chart-row-for-some-repository-some-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell icon"
@@ -10534,12 +10603,14 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                         </div>
                       </div>
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="1"
                         style="position: absolute; left: 0px; transform: translateY(33px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-chart-row-for-some-repository-some-other-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell icon"
@@ -11512,7 +11583,8 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                   class="Table flex flex-col HelmCharts grow shrink-0 basis-0 dark selectable scrollable sortable autoSize virtual"
                 >
                   <div
-                    class="TableHead sticky nowrap topLine"
+                    class="TableHead grid-columns sticky nowrap topLine"
+                    style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                   >
                     <div
                       class="TableCell icon nowrap"
@@ -11636,12 +11708,14 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                       style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                     >
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="0"
                         style="position: absolute; left: 0px; transform: translateY(0px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-chart-row-for-some-repository-some-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell icon"
@@ -11714,12 +11788,14 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                         </div>
                       </div>
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="1"
                         style="position: absolute; left: 0px; transform: translateY(33px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-chart-row-for-some-repository-some-other-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell icon"
@@ -12747,7 +12823,8 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                   class="Table flex flex-col HelmCharts grow shrink-0 basis-0 dark selectable scrollable sortable autoSize virtual"
                 >
                   <div
-                    class="TableHead sticky nowrap topLine"
+                    class="TableHead grid-columns sticky nowrap topLine"
+                    style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                   >
                     <div
                       class="TableCell icon nowrap"
@@ -12871,12 +12948,14 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                       style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                     >
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="0"
                         style="position: absolute; left: 0px; transform: translateY(0px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-chart-row-for-some-repository-some-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell icon"
@@ -12949,12 +13028,14 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                         </div>
                       </div>
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="1"
                         style="position: absolute; left: 0px; transform: translateY(33px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-chart-row-for-some-repository-some-other-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell icon"
@@ -13871,7 +13952,8 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                   class="Table flex flex-col HelmReleases grow shrink-0 basis-0 dark selectable scrollable sortable autoSize virtual"
                 >
                   <div
-                    class="TableHead sticky nowrap topLine"
+                    class="TableHead grid-columns sticky nowrap topLine"
+                    style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px 0px 0px 0px;"
                   >
                     <div
                       class="TableCell checkbox"
@@ -14769,7 +14851,8 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                   class="Table flex flex-col HelmCharts grow shrink-0 basis-0 dark selectable scrollable sortable autoSize virtual"
                 >
                   <div
-                    class="TableHead sticky nowrap topLine"
+                    class="TableHead grid-columns sticky nowrap topLine"
+                    style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                   >
                     <div
                       class="TableCell icon nowrap"
@@ -14893,12 +14976,14 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                       style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                     >
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="0"
                         style="position: absolute; left: 0px; transform: translateY(0px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-chart-row-for-some-repository-some-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell icon"
@@ -14971,12 +15056,14 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                         </div>
                       </div>
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="1"
                         style="position: absolute; left: 0px; transform: translateY(33px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-chart-row-for-some-repository-some-other-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell icon"
@@ -15819,7 +15906,8 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                   class="Table flex flex-col HelmCharts grow shrink-0 basis-0 dark selectable scrollable sortable autoSize virtual"
                 >
                   <div
-                    class="TableHead sticky nowrap topLine"
+                    class="TableHead grid-columns sticky nowrap topLine"
+                    style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                   >
                     <div
                       class="TableCell icon nowrap"
@@ -15943,12 +16031,14 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                       style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                     >
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="0"
                         style="position: absolute; left: 0px; transform: translateY(0px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-chart-row-for-some-repository-some-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell icon"
@@ -16021,12 +16111,14 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                         </div>
                       </div>
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="1"
                         style="position: absolute; left: 0px; transform: translateY(33px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow selected nowrap"
+                          class="TableRow grid-columns selected nowrap"
                           data-testid="helm-chart-row-for-some-repository-some-other-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell icon"
@@ -17211,7 +17303,8 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                   class="Table flex flex-col HelmCharts grow shrink-0 basis-0 dark selectable scrollable sortable autoSize virtual"
                 >
                   <div
-                    class="TableHead sticky nowrap topLine"
+                    class="TableHead grid-columns sticky nowrap topLine"
+                    style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                   >
                     <div
                       class="TableCell icon nowrap"
@@ -17335,12 +17428,14 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                       style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                     >
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="0"
                         style="position: absolute; left: 0px; transform: translateY(0px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-chart-row-for-some-repository-some-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell icon"
@@ -17413,12 +17508,14 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                         </div>
                       </div>
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="1"
                         style="position: absolute; left: 0px; transform: translateY(33px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-chart-row-for-some-repository-some-other-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell icon"
@@ -18220,7 +18317,8 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                   class="Table flex flex-col HelmCharts grow shrink-0 basis-0 dark selectable scrollable sortable autoSize virtual"
                 >
                   <div
-                    class="TableHead sticky nowrap topLine"
+                    class="TableHead grid-columns sticky nowrap topLine"
+                    style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                   >
                     <div
                       class="TableCell icon nowrap"
@@ -18344,12 +18442,14 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                       style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                     >
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="0"
                         style="position: absolute; left: 0px; transform: translateY(0px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-chart-row-for-some-repository-some-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell icon"
@@ -18422,12 +18522,14 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                         </div>
                       </div>
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="1"
                         style="position: absolute; left: 0px; transform: translateY(33px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-chart-row-for-some-repository-some-other-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell icon"
@@ -19454,7 +19556,8 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                   class="Table flex flex-col HelmCharts grow shrink-0 basis-0 dark selectable scrollable sortable autoSize virtual"
                 >
                   <div
-                    class="TableHead sticky nowrap topLine"
+                    class="TableHead grid-columns sticky nowrap topLine"
+                    style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                   >
                     <div
                       class="TableCell icon nowrap"
@@ -19578,12 +19681,14 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                       style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                     >
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="0"
                         style="position: absolute; left: 0px; transform: translateY(0px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-chart-row-for-some-repository-some-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell icon"
@@ -19656,12 +19761,14 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                         </div>
                       </div>
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="1"
                         style="position: absolute; left: 0px; transform: translateY(33px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-chart-row-for-some-repository-some-other-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell icon"
@@ -20686,7 +20793,8 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                   class="Table flex flex-col HelmCharts grow shrink-0 basis-0 dark selectable scrollable sortable autoSize virtual"
                 >
                   <div
-                    class="TableHead sticky nowrap topLine"
+                    class="TableHead grid-columns sticky nowrap topLine"
+                    style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                   >
                     <div
                       class="TableCell icon nowrap"
@@ -20810,12 +20918,14 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                       style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                     >
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="0"
                         style="position: absolute; left: 0px; transform: translateY(0px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-chart-row-for-some-repository-some-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell icon"
@@ -20888,12 +20998,14 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                         </div>
                       </div>
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="1"
                         style="position: absolute; left: 0px; transform: translateY(33px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-chart-row-for-some-repository-some-other-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell icon"
@@ -21866,7 +21978,8 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                   class="Table flex flex-col HelmCharts grow shrink-0 basis-0 dark selectable scrollable sortable autoSize virtual"
                 >
                   <div
-                    class="TableHead sticky nowrap topLine"
+                    class="TableHead grid-columns sticky nowrap topLine"
+                    style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                   >
                     <div
                       class="TableCell icon nowrap"
@@ -21990,12 +22103,14 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                       style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                     >
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="0"
                         style="position: absolute; left: 0px; transform: translateY(0px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-chart-row-for-some-repository-some-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell icon"
@@ -22068,12 +22183,14 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                         </div>
                       </div>
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="1"
                         style="position: absolute; left: 0px; transform: translateY(33px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-chart-row-for-some-repository-some-other-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell icon"
@@ -23046,7 +23163,8 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                   class="Table flex flex-col HelmCharts grow shrink-0 basis-0 dark selectable scrollable sortable autoSize virtual"
                 >
                   <div
-                    class="TableHead sticky nowrap topLine"
+                    class="TableHead grid-columns sticky nowrap topLine"
+                    style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                   >
                     <div
                       class="TableCell icon nowrap"
@@ -23170,12 +23288,14 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                       style="position: relative; max-height: 100%; flex-grow: 1; overflow-y: auto; width: 100%; height: 100%;"
                     >
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="0"
                         style="position: absolute; left: 0px; transform: translateY(0px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-chart-row-for-some-repository-some-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell icon"
@@ -23248,12 +23368,14 @@ exports[`installing helm chart from new tab > given tab for installing chart was
                         </div>
                       </div>
                       <div
+                        class="virtual-table-row"
                         data-react-window-index="1"
                         style="position: absolute; left: 0px; transform: translateY(33px); height: 33px; width: 100%;"
                       >
                         <div
-                          class="TableRow nowrap"
+                          class="TableRow grid-columns nowrap"
                           data-testid="helm-chart-row-for-some-repository-some-other-name"
+                          style="grid-template-columns: 0px 0px 0px 0px 0px 0px 0px;"
                         >
                           <div
                             class="TableCell icon"

@@ -10,9 +10,9 @@ import { roleInstanceSetApiInjectable } from "@freelensapp/kube-api-specifics";
 import { showCheckedErrorNotificationInjectable } from "@freelensapp/notifications";
 import { cssNames } from "@freelensapp/utilities";
 import { withInjectables } from "@ogre-tools/injectable-react";
-import { computed, makeObservable, observable } from "mobx";
+import { computed, observable } from "mobx";
 import { observer } from "mobx-react";
-import React, { Component } from "react";
+import { Component } from "react";
 import { Dialog } from "../../dialog";
 import { Slider } from "../../slider";
 import { Wizard, WizardStep } from "../../wizard";
@@ -36,13 +36,12 @@ interface Dependencies {
 
 @observer
 class NonInjectedRoleInstanceSetScaleDialog extends Component<RoleInstanceSetScaleDialogProps & Dependencies> {
-  @observable ready = false;
-  @observable currentReplicas = 0;
-  @observable desiredReplicas = 0;
+  @observable accessor ready = false;
+  @observable accessor currentReplicas = 0;
+  @observable accessor desiredReplicas = 0;
 
   constructor(props: RoleInstanceSetScaleDialogProps & Dependencies) {
     super(props);
-    makeObservable(this);
   }
 
   close = () => {

@@ -240,6 +240,29 @@ exports[`kube-object-list-layout > given pod store > renders 1`] = `
                 />
               </div>
               <div
+                class="TableCell gpu nowrap sorting"
+                id="gpuRequests"
+              >
+                <div
+                  class="content"
+                >
+                  GPU
+                </div>
+                <i
+                  class="Icon sortIcon material focusable"
+                >
+                  <span
+                    class="icon"
+                    data-icon-name="arrow_drop_down"
+                  >
+                    arrow_drop_down
+                  </span>
+                </i>
+                <div
+                  class="resize-handle"
+                />
+              </div>
+              <div
                 class="TableCell memory nowrap sorting"
                 id="memoryUsage"
               >

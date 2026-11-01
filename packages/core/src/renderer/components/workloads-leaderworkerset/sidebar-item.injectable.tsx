@@ -4,9 +4,9 @@
  */
 
 import { sidebarItemInjectionToken } from "@freelensapp/cluster-sidebar";
+import { matchPath } from "@freelensapp/routing";
 import { getInjectable } from "@ogre-tools/injectable";
 import { computed } from "mobx";
-import { matchPath } from "react-router-dom";
 import customResourcesRouteInjectable from "../../../common/front-end-routing/routes/cluster/custom-resources/custom-resources-route.injectable";
 import navigateToCustomResourcesInjectable from "../../../common/front-end-routing/routes/cluster/custom-resources/navigate-to-custom-resources.injectable";
 import currentPathInjectable from "../../routes/current-path.injectable";
