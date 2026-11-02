@@ -109,9 +109,11 @@ Click any screenshot to view it at full size.
 
 <table>
   <tr>
-    <td width="50%" align="center" valign="top">
-      <strong>LeaderWorkerSet</strong><br>
-      <sub>Replica count</sub><br>
+    <th width="50%">Replica scaling</th>
+    <th width="50%">Per-role scaling</th>
+  </tr>
+  <tr>
+    <td width="50%" align="center" valign="middle">
       <a href="docs/images/fork/scale-leaderworkerset.jpg"
         ><img
           src="docs/images/fork/scale-leaderworkerset.jpg"
@@ -120,22 +122,7 @@ Click any screenshot to view it at full size.
         ></a
       >
     </td>
-    <td width="50%" align="center" valign="top">
-      <strong>RoleInstanceSet</strong><br>
-      <sub>Replica count</sub><br>
-      <a href="docs/images/fork/scale-roleinstanceset.jpg"
-        ><img
-          src="docs/images/fork/scale-roleinstanceset.jpg"
-          width="400"
-          alt="RoleInstanceSet replica scaling dialog"
-        ></a
-      >
-    </td>
-  </tr>
-  <tr>
-    <td width="50%" align="center" valign="top">
-      <strong>RoleBasedGroup</strong><br>
-      <sub>Independent role replicas</sub><br>
+    <td width="50%" align="center" valign="middle">
       <a href="docs/images/fork/scale-rolebasedgroup.jpg"
         ><img
           src="docs/images/fork/scale-rolebasedgroup.jpg"
@@ -144,19 +131,12 @@ Click any screenshot to view it at full size.
         ></a
       >
     </td>
-    <td width="50%" align="center" valign="top">
-      <strong>RoleInstance</strong><br>
-      <sub>Independent component sizes</sub><br>
-      <a href="docs/images/fork/scale-roleinstance.jpg"
-        ><img
-          src="docs/images/fork/scale-roleinstance.jpg"
-          width="400"
-          alt="RoleInstance scaling with independent component sizes"
-        ></a
-      >
-    </td>
   </tr>
 </table>
+
+The examples show **LeaderWorkerSet** replica scaling and **RoleBasedGroup**
+role scaling. **RoleInstanceSet** uses the replica dialog; **RoleInstance**
+provides the same per-item controls for component sizes.
 
 <details>
 <summary>Required permissions and API behavior</summary>
