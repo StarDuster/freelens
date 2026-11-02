@@ -1,8 +1,7 @@
 # Freelens
 
-> **GPU Support (fork):** This fork adds GPU resource visibility to Freelens.
-> NVIDIA GPU allocation is displayed in the Node list (`allocated/total`), Pod list (per-pod GPU count),
-> and Cluster Overview (GPU donut chart). Also adds `Ctrl+`` to toggle the dock panel.
+> **Freelens fork:** GPU allocation visibility, custom workload scaling, and Dock shortcuts on Freelens 2.0.
+> See the [feature screenshots](#fork-features) and download builds from the [fork releases](https://github.com/StarDuster/freelens/releases).
 
 <!-- markdownlint-disable MD013 -->
 [![Home](https://img.shields.io/badge/%F0%9F%8F%A0-freelens.app-02a7a0)](https://freelens.app)
@@ -39,11 +38,82 @@ and user-friendly interface.
 
 <br clear="left">
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/images/macos-pods-dark.jpg">
-  <source media="(prefers-color-scheme: light)" srcset="docs/images/macos-pods-light.jpg">
-  <img alt="Screenshot" src="docs/images/macos-pods-light.jpg">
-</picture>
+## Fork features
+
+The screenshots below use synthetic data from an isolated local test cluster.
+
+### GPU visibility
+
+GPU values represent requests for the `nvidia.com/gpu` resource. Node and
+cluster allocation totals count Running Pods. Per-node Prometheus metrics
+are preferred when available, with Kubernetes Node and Pod data as a fallback.
+
+**Cluster Overview** adds a GPU allocation chart and the number of Ready,
+schedulable GPU nodes with no allocated GPUs. This example shows 2 requested
+GPUs, capacity 12, and one free node.
+
+![GPU allocation chart showing requests, capacity, and free nodes](docs/images/fork/gpu-overview.jpg)
+
+**Nodes** shows allocated GPUs and capacity. A completely free node is marked
+in green; a warning icon marks capacity other than eight GPUs. Capacity uses
+the node's allocatable GPU count, falling back to its reported capacity.
+
+![Nodes showing GPU allocation, a free node, and a capacity warning](docs/images/fork/gpu-nodes.jpg)
+
+**Pods** shows the sum of each Pod's container GPU requests. Completed Pods
+still display their declared requests in this column, but are excluded from
+the current allocation totals. In this example, the completed Pod's eight
+GPUs do not increase the cluster's two-GPU allocation.
+
+![Pod GPU requests with Running and Succeeded workloads](docs/images/fork/gpu-pods.jpg)
+
+### Custom workload scaling
+
+Scale LeaderWorkerSet and RoleInstanceSet replicas, RoleBasedGroup role
+replicas, and RoleInstance component sizes with sliders and plus/minus
+controls. The corresponding CRDs must be installed, and your Kubernetes
+identity needs permission to read and update the resources. LeaderWorkerSet
+and RoleInstanceSet use the scale subresource; RoleBasedGroup and
+RoleInstance update their role or component specifications.
+
+**LeaderWorkerSet**
+
+![LeaderWorkerSet replica scaling dialog](docs/images/fork/scale-leaderworkerset.jpg)
+
+**RoleBasedGroup**
+
+Each role has its own current, ready, and desired counts.
+
+![RoleBasedGroup scaling with all three roles visible](docs/images/fork/scale-rolebasedgroup.jpg)
+
+<details>
+<summary>RoleInstance and RoleInstanceSet screenshots</summary>
+
+**RoleInstance**
+
+![RoleInstance scaling with independent component sizes](docs/images/fork/scale-roleinstance.jpg)
+
+**RoleInstanceSet**
+
+![RoleInstanceSet replica scaling dialog](docs/images/fork/scale-roleinstanceset.jpg)
+
+</details>
+
+### Dock and navigation
+
+- Press <kbd>Ctrl</kbd> + <kbd>&#96;</kbd> to open or collapse the cluster Dock.
+- Closing the final terminal or log tab collapses the Dock. Unrecognized
+  persisted tab kinds are discarded when restoring it.
+- LeaderWorkerSets and RoleBasedGroups have entries under Workloads.
+  Replication Controllers are hidden from that menu.
+
+### Known limitations
+
+- Table column dragging and responsive column widths are unreliable.
+- The GPU summary uses current allocation even when a historical time range
+  is selected.
+- At full GPU allocation, the donut can still show an available slice. Use
+  the numeric request and capacity labels to check allocation.
 
 ## Requirements
 
@@ -52,8 +122,19 @@ which may not work correctly; a different one can be set in Preferences.
 
 ## Downloads
 
-See the [releases](https://github.com/freelensapp/freelens/releases) page and
-download the right package for your system.
+Download this fork from the
+[StarDuster/freelens releases](https://github.com/StarDuster/freelens/releases)
+page. Read each release's notes for supported platforms, signing and
+notarization status, checksums, and validation scope. A SHA256 checksum checks
+download integrity; it does not provide a Developer ID signature or Apple
+notarization. Screenshots and local mock-cluster checks do not establish
+compatibility with every real cluster.
+
+Freelens 2.0 requires extensions compatible with its v2 extension API.
+See the [extension migration guide](docs/extensions/migrating-from-v1.md).
+
+The platform and package-manager instructions below describe the
+[upstream Freelens distribution](https://github.com/freelensapp/freelens/releases).
 
 ### macOS
 
