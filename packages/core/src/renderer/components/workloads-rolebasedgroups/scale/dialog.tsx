@@ -167,10 +167,10 @@ class NonInjectedRoleBasedGroupScaleDialog extends Component<RoleBasedGroupScale
         <div className="desired-scale" data-testid={`role-desired-${roleState.name}`}>
           Desired: {roleState.desiredReplicas}
         </div>
-        <div className="slider-container flex align-center">
+        <div className="slider-container flex items-center">
           <Slider value={roleState.desiredReplicas} max={scaleMax} onChange={this.onChange(index)} />
         </div>
-        <div className="plus-minus-container flex gaps">
+        <div className="plus-minus-container flex gap-2">
           <Icon
             material="remove_circle_outline"
             onClick={() => this.desiredDown(index)}
@@ -198,7 +198,7 @@ class NonInjectedRoleBasedGroupScaleDialog extends Component<RoleBasedGroupScale
         done={this.close}
       >
         <WizardStep
-          contentClass="flex gaps column"
+          contentClass="flex gap-2 flex-col"
           next={() => this.scale(rbg)}
           nextLabel="Scale"
           disabledNext={!this.ready || !this.hasChanges}
