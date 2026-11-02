@@ -167,10 +167,10 @@ class NonInjectedRoleInstanceScaleDialog extends Component<RoleInstanceScaleDial
         <div className="desired-scale" data-testid={`component-desired-${componentState.name}`}>
           Desired: {componentState.desiredSize}
         </div>
-        <div className="slider-container flex align-center">
+        <div className="slider-container flex items-center">
           <Slider value={componentState.desiredSize} max={scaleMax} onChange={this.onChange(index)} />
         </div>
-        <div className="plus-minus-container flex gaps">
+        <div className="plus-minus-container flex gap-2">
           <Icon
             material="remove_circle_outline"
             onClick={() => this.desiredDown(index)}
@@ -198,7 +198,7 @@ class NonInjectedRoleInstanceScaleDialog extends Component<RoleInstanceScaleDial
         done={this.close}
       >
         <WizardStep
-          contentClass="flex gaps column"
+          contentClass="flex gap-2 flex-col"
           next={() => this.scale(roleInstance)}
           nextLabel="Scale"
           disabledNext={!this.ready || !this.hasChanges}
