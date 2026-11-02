@@ -48,54 +48,123 @@ GPU values represent requests for the `nvidia.com/gpu` resource. Node and
 cluster allocation totals count Running Pods. Per-node Prometheus metrics
 are preferred when available, with Kubernetes Node and Pod data as a fallback.
 
-**Cluster Overview** adds a GPU allocation chart and the number of Ready,
-schedulable GPU nodes with no allocated GPUs. This example shows 2 requested
-GPUs, capacity 12, and one free node.
+<table>
+  <tr>
+    <td width="30%" align="center" valign="middle">
+      <a href="docs/images/fork/gpu-overview.jpg"
+        ><img
+          src="docs/images/fork/gpu-overview.jpg"
+          width="240"
+          alt="GPU allocation chart showing requests, capacity, and free nodes"
+        ></a
+      >
+    </td>
+    <td width="70%" valign="middle">
+      <strong>Cluster Overview</strong>
+      <p>GPU requests, capacity, and free nodes at a glance.</p>
+      <p>
+        This example has <strong>2 GPUs requested</strong> out of <strong>12</strong>, with
+        <strong>one free node</strong>. Free nodes are Ready, schedulable GPU nodes with no allocated GPUs.
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Nodes</strong>
+      · Allocated GPUs / capacity, green for free nodes, and a warning for capacity other than eight.
+      <br>
+      <a href="docs/images/fork/gpu-nodes.jpg"
+        ><img
+          src="docs/images/fork/gpu-nodes.jpg"
+          width="840"
+          alt="Nodes showing GPU allocation, a free node, and a capacity warning"
+        ></a
+      >
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Pods</strong>
+      · GPU requests per Pod, including the declarations of completed workloads.
+      <br>
+      <a href="docs/images/fork/gpu-pods.jpg"
+        ><img
+          src="docs/images/fork/gpu-pods.jpg"
+          width="840"
+          alt="Pod GPU requests with Running and Succeeded workloads"
+        ></a
+      >
+    </td>
+  </tr>
+</table>
 
-![GPU allocation chart showing requests, capacity, and free nodes](docs/images/fork/gpu-overview.jpg)
-
-**Nodes** shows allocated GPUs and capacity. A completely free node is marked
-in green; a warning icon marks capacity other than eight GPUs. Capacity uses
-the node's allocatable GPU count, falling back to its reported capacity.
-
-![Nodes showing GPU allocation, a free node, and a capacity warning](docs/images/fork/gpu-nodes.jpg)
-
-**Pods** shows the sum of each Pod's container GPU requests. Completed Pods
-still display their declared requests in this column, but are excluded from
-the current allocation totals. In this example, the completed Pod's eight
-GPUs do not increase the cluster's two-GPU allocation.
-
-![Pod GPU requests with Running and Succeeded workloads](docs/images/fork/gpu-pods.jpg)
+Node capacity uses the allocatable GPU count, falling back to reported
+capacity. The Pod column sums container requests; completed Pods remain
+visible, but do not increase the current allocation totals.
 
 ### Custom workload scaling
 
-Scale LeaderWorkerSet and RoleInstanceSet replicas, RoleBasedGroup role
-replicas, and RoleInstance component sizes with sliders and plus/minus
-controls. The corresponding CRDs must be installed, and your Kubernetes
-identity needs permission to read and update the resources. LeaderWorkerSet
-and RoleInstanceSet use the scale subresource; RoleBasedGroup and
-RoleInstance update their role or component specifications.
+Scale replicas, roles, and components with sliders and plus/minus controls.
+Click any screenshot to view it at full size.
 
-**LeaderWorkerSet**
-
-![LeaderWorkerSet replica scaling dialog](docs/images/fork/scale-leaderworkerset.jpg)
-
-**RoleBasedGroup**
-
-Each role has its own current, ready, and desired counts.
-
-![RoleBasedGroup scaling with all three roles visible](docs/images/fork/scale-rolebasedgroup.jpg)
+<table>
+  <tr>
+    <td width="50%" align="center" valign="top">
+      <strong>LeaderWorkerSet</strong><br>
+      <sub>Replica count</sub><br>
+      <a href="docs/images/fork/scale-leaderworkerset.jpg"
+        ><img
+          src="docs/images/fork/scale-leaderworkerset.jpg"
+          width="400"
+          alt="LeaderWorkerSet replica scaling dialog"
+        ></a
+      >
+    </td>
+    <td width="50%" align="center" valign="top">
+      <strong>RoleInstanceSet</strong><br>
+      <sub>Replica count</sub><br>
+      <a href="docs/images/fork/scale-roleinstanceset.jpg"
+        ><img
+          src="docs/images/fork/scale-roleinstanceset.jpg"
+          width="400"
+          alt="RoleInstanceSet replica scaling dialog"
+        ></a
+      >
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" align="center" valign="top">
+      <strong>RoleBasedGroup</strong><br>
+      <sub>Independent role replicas</sub><br>
+      <a href="docs/images/fork/scale-rolebasedgroup.jpg"
+        ><img
+          src="docs/images/fork/scale-rolebasedgroup.jpg"
+          width="400"
+          alt="RoleBasedGroup scaling with all three roles visible"
+        ></a
+      >
+    </td>
+    <td width="50%" align="center" valign="top">
+      <strong>RoleInstance</strong><br>
+      <sub>Independent component sizes</sub><br>
+      <a href="docs/images/fork/scale-roleinstance.jpg"
+        ><img
+          src="docs/images/fork/scale-roleinstance.jpg"
+          width="400"
+          alt="RoleInstance scaling with independent component sizes"
+        ></a
+      >
+    </td>
+  </tr>
+</table>
 
 <details>
-<summary>RoleInstance and RoleInstanceSet screenshots</summary>
+<summary>Required permissions and API behavior</summary>
 
-**RoleInstance**
-
-![RoleInstance scaling with independent component sizes](docs/images/fork/scale-roleinstance.jpg)
-
-**RoleInstanceSet**
-
-![RoleInstanceSet replica scaling dialog](docs/images/fork/scale-roleinstanceset.jpg)
+The corresponding CRDs must be installed, and your Kubernetes identity needs
+permission to read and update the resources. LeaderWorkerSet and
+RoleInstanceSet use the scale subresource; RoleBasedGroup and RoleInstance
+update their role or component specifications.
 
 </details>
 
